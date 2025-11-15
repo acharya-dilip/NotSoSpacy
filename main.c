@@ -98,6 +98,8 @@ void screenAlarm() {
     //Init of labelSemiColon
     GtkWidget *labelSemiColon = gtk_label_new(":");
     gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
+    gtk_widget_add_css_class(labelSemiColon,"labelSemiColon");
+
 
     //Init of entryMinutes
     GtkWidget *entryMinutes = gtk_entry_new();
