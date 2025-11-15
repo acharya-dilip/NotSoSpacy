@@ -102,6 +102,10 @@ void screenAlarm() {
     GtkWidget *entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryHour),FALSE);
+    char temp[5];
+    snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_hexpand(GTK_WIDGET(entryHour), FALSE);
@@ -136,6 +140,7 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
 
 }
+
 //fetches the current time
  void fetchTime() {
     time_t now = time(NULL);
