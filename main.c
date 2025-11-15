@@ -77,13 +77,21 @@ void screenAlarm() {
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarm),gridParent);
 
-    //Init of entry hours
+    //Init of entryhours
     GtkWidget *entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
 
     //Init of labelSemiColon
     GtkWidget *labelSemiColon = gtk_label_new(":");
     gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
+
+    //Init of entryMinutes
+    GtkWidget *entryMinutes = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
+
+
+
+
 }
 
 
