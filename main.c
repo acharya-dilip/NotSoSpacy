@@ -48,7 +48,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
     //Init of entryTime
     GtkWidget *entryTime = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,10,4);
+    gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,15,4);
     gtk_editable_set_editable(GTK_EDITABLE(entryTime),FALSE);
     gtk_widget_add_css_class(entryTime,"entryTime");
     gtk_widget_set_size_request(entryTime,300,80);
@@ -94,7 +94,8 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
-    gtk_widget_set_size_request(entryHour,60,80);
+    gtk_widget_set_hexpand(GTK_WIDGET(entryHour), FALSE);
+
 
     //Init of buttonHourDown
     GtkWidget *buttonHourDown = gtk_button_new_with_label("🔻");
@@ -109,12 +110,16 @@ void screenAlarm() {
     //Init of buttonMinUp
     GtkWidget *buttonMinUp = gtk_button_new_with_label("🔺");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinUp,2,0,1,1);
+
     //Init of entryMinutes
     GtkWidget *entryMinutes = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
     gtk_widget_add_css_class(entryMinutes,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
-    gtk_widget_set_size_request(entryMinutes,30,30);
+    gtk_widget_set_size_request(entryMinutes,90,90);
+    gtk_widget_set_hexpand(GTK_WIDGET(entryMinutes), FALSE);
+
+
     //Init of buttonHourDown
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
