@@ -6,6 +6,7 @@
 
 gboolean updateTime(gpointer user_data);
 void screenAlarm();
+void fetchTime();
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
@@ -69,6 +70,7 @@ gboolean updateTime(gpointer user_data) {
 }
 
 void screenAlarm() {
+
     //Init of windowAlarm
     GtkWidget *windowAlarm = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowAlarm),"Set Alarm");
@@ -124,12 +126,10 @@ void screenAlarm() {
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
 
-
-
-
+}
+ void fetchTime() {
 
 }
-
 
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
