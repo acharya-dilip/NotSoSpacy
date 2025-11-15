@@ -9,6 +9,17 @@ gboolean updateTime(gpointer user_data);
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
+    //Connecting the stylesheet
+    GtkCssProvider *provider = gtk_css_provider_new();
+    gtk_css_provider_load_from_path(provider, "styles.css");
+
+    gtk_style_context_add_provider_for_display(
+        gdk_display_get_default(),
+        GTK_STYLE_PROVIDER(provider),
+        GTK_STYLE_PROVIDER_PRIORITY_USER
+    );;
+
+
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);
     //gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
