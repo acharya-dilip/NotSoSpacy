@@ -30,7 +30,9 @@ static void activate(GtkApplication *app,gpointer user_data) {
     GtkWidget *headerbarMain = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowMain),headerbarMain);
 
-    //Init of
+    //Init of buttonAlarm
+    GtkWidget *buttonAlarm = gtk_button_new_with_label("⏰");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAlarm);
 
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
