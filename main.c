@@ -96,6 +96,9 @@ void screenAlarm() {
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_size_request(entryHour,60,80);
 
+    //Init of buttonHourDown
+    GtkWidget *buttonHourDown = gtk_button_new_with_label("🔻");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonHourDown,0,2,1,1);
 
 
     //Init of labelSemiColon
