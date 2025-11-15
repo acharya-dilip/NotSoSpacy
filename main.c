@@ -14,6 +14,13 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowMain),gridParent);
+    //Margins & Paddings
+    gtk_widget_set_halign(GTK_WIDGET(gridParent),GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(GTK_WIDGET(gridParent),GTK_ALIGN_CENTER);
+    gtk_widget_set_margin_start(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_end(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_top(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
 
     //Init of entryTime
     GtkWidget *entryTime = gtk_entry_new();
