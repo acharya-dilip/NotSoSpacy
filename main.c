@@ -25,6 +25,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Init of entryTime
     GtkWidget *entryTime = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,10,4);
+    gtk_widget_set_size_request(entryTime,280,80);
 
 
 
