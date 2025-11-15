@@ -82,18 +82,23 @@ void screenAlarm() {
     GtkWidget *entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_widget_add_css_class(entryHour,"entryHour");
+    gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
+    gtk_widget_set_size_request(entryHour,80,80);
+
+
 
 
     //Init of labelSemiColon
     GtkWidget *labelSemiColon = gtk_label_new(":");
     gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
-    gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
 
     //Init of entryMinutes
     GtkWidget *entryMinutes = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
     gtk_widget_add_css_class(entryMinutes,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
+    gtk_widget_set_size_request(entryHour,80,80);
+
 
 
 
