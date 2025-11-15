@@ -75,6 +75,9 @@ gboolean updateTime(gpointer user_data) {
 
 void screenAlarm() {
 
+    //Fetches the current time in the currentTime struct
+    fetchTime();
+
     //Init of windowAlarm
     GtkWidget *windowAlarm = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowAlarm),"Set Alarm");
