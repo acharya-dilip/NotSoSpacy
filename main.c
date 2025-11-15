@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-void updateTime(gpointer user_data);
+gboolean updateTime(gpointer user_data);
 
 
 static void activate(GtkApplication *app,gpointer user_data) {
@@ -31,11 +31,20 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,10,4);
     gtk_widget_set_size_request(entryTime,280,80);
 
-
-
-
+    g_timeout_add_seconds(1, updateTime, entryTime);
+    updateTime(entryTime);
 
 }
+
+gboolean updateTime(gpointer user_data) {
+    GtkEntry *entryTime = GTK_ENTRY(user_data);
+    GDateTime *timeCurrent = g_date_time_new_now_local();
+    gchar *time = g_date_time_format(timeCurrent, "%H:%M:%S");
+    gtk_editable_set_text(GTK_EDITABLE(entryTime), time);
+    return G_SOURCE_CONTINUE;
+}
+
+
 
 
 int main(int argc, char **argv){
