@@ -115,7 +115,9 @@ void screenAlarm() {
     gtk_widget_add_css_class(entryMinutes,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
     gtk_widget_set_size_request(entryMinutes,30,30);
-
+    //Init of buttonHourDown
+    GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
 
 
 
