@@ -85,6 +85,9 @@ void screenAlarm() {
     gtk_widget_set_margin_top(GTK_WIDGET(gridParent),10);
     gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
 
+    //Init of buttonHourUp
+    GtkWidget *buttonHourUp = gtk_button_new_with_label("🔺");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonHourUp,0,0,1,1);
 
     //Init of entryhours
     GtkWidget *entryHour = gtk_entry_new();
@@ -92,7 +95,6 @@ void screenAlarm() {
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_size_request(entryHour,60,80);
-
 
 
 
