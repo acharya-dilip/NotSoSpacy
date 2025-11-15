@@ -3,6 +3,10 @@
 #include <curl/curl.h>
 #include <time.h>
 
+
+void updateTime(gpointer user_data);
+
+
 static void activate(GtkApplication *app,gpointer user_data) {
 
     //Init of windowMain
