@@ -67,7 +67,11 @@ gboolean updateTime(gpointer user_data) {
 }
 
 void screenAlarm() {
-
+    //Init of windowAlarm
+    GtkWidget *windowAlarm = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowAlarm),"Set Alarm");
+    gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
+    gtk_window_present(GTK_WINDOW(windowAlarm));
 }
 
 
