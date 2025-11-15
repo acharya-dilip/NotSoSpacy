@@ -129,6 +129,9 @@ void screenAlarm() {
     GtkWidget *entryMinutes = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryMinutes),FALSE);
+    snprintf(temp,sizeof(temp),"%d",curTime.minute);
+    gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+
     gtk_widget_add_css_class(entryMinutes,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
     gtk_widget_set_size_request(entryMinutes,90,90);
