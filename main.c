@@ -7,6 +7,10 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarm();
 void fetchTime();
+struct currentTime {
+    int hour;
+    int min;
+}curTime;
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
