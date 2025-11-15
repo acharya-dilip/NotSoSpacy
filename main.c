@@ -71,19 +71,26 @@ void screenAlarm() {
     //Init of windowAlarm
     GtkWidget *windowAlarm = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowAlarm),"Set Alarm");
-    gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
+    //gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
     gtk_window_present(GTK_WINDOW(windowAlarm));
 
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarm),gridParent);
+    gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(gridParent,GTK_ALIGN_CENTER);
+    gtk_widget_set_margin_start(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_end(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_top(GTK_WIDGET(gridParent),10);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
+
 
     //Init of entryhours
     GtkWidget *entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
-    gtk_widget_set_size_request(entryHour,80,80);
+    gtk_widget_set_size_request(entryHour,60,80);
 
 
 
@@ -97,7 +104,7 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
     gtk_widget_add_css_class(entryMinutes,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
-    gtk_widget_set_size_request(entryHour,80,80);
+    gtk_widget_set_size_request(entryMinutes,40,40);
 
 
 
