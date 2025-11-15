@@ -26,6 +26,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_window_set_title(GTK_WINDOW(windowMain),"NotSoSpacy");
     gtk_window_present(GTK_WINDOW(windowMain));
 
+    //Init of headerbarMain
+    GtkWidget *headerbarMain = gtk_header_bar_new();
+    gtk_window_set_titlebar(GTK_WINDOW(windowMain),headerbarMain);
+
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowMain),gridParent);
