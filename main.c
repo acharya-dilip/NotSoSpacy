@@ -9,7 +9,7 @@ void screenAlarm();
 void fetchTime();
 struct currentTime {
     int hour;
-    int min;
+    int minute;
 }curTime;
 
 static void activate(GtkApplication *app,gpointer user_data) {
@@ -131,8 +131,12 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
 
 }
+//fetches the current time
  void fetchTime() {
-
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    curTime.hour = t->tm_hour;
+    curTime.minute = t->tm_min;
 }
 
 int main(int argc, char **argv){
