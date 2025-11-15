@@ -77,6 +77,10 @@ void screenAlarm() {
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarm),gridParent);
 
+    //Init of entry hours
+    GtkWidget *entryHour = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
+
 }
 
 
