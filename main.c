@@ -30,6 +30,8 @@ static void activate(GtkApplication *app,gpointer user_data) {
     GtkWidget *headerbarMain = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowMain),headerbarMain);
 
+    //Init of
+
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowMain),gridParent);
@@ -46,6 +48,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,10,4);
     gtk_widget_add_css_class(entryTime,"entryTime");
     gtk_widget_set_size_request(entryTime,300,80);
+    gtk_entry_set_alignment(GTK_ENTRY(entryTime),0.5);
 
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
