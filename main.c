@@ -106,7 +106,9 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
     gtk_widget_add_css_class(labelSemiColon,"labelSemiColon");
 
-
+    //Init of buttonMinUp
+    GtkWidget *buttonMinUp = gtk_button_new_with_label("🔺");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonMinUp,2,0,1,1);
     //Init of entryMinutes
     GtkWidget *entryMinutes = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
