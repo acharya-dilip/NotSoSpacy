@@ -81,6 +81,9 @@ void screenAlarm() {
     GtkWidget *entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
 
+    //Init of labelSemiColon
+    GtkWidget *labelSemiColon = gtk_label_new(":");
+    gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
 }
 
 
