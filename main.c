@@ -5,7 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
-
+void screenAlarm();
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
@@ -66,7 +66,9 @@ gboolean updateTime(gpointer user_data) {
     return G_SOURCE_CONTINUE;
 }
 
+void screenAlarm() {
 
+}
 
 
 int main(int argc, char **argv){
