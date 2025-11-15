@@ -7,7 +7,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);
-    gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
+    //gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
     gtk_window_set_title(GTK_WINDOW(windowMain),"NotSoSpacy");
     gtk_window_present(GTK_WINDOW(windowMain));
 
