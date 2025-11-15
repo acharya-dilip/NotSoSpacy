@@ -41,7 +41,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     GtkWidget *entryTime = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,10,4);
     gtk_widget_add_css_class(entryTime,"entryTime");
-    gtk_widget_set_size_request(entryTime,280,80);
+    gtk_widget_set_size_request(entryTime,300,80);
 
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
