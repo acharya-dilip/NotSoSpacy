@@ -126,16 +126,16 @@ void screenAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinUp,2,0,1,1);
 
     //Init of entryMinutes
-    GtkWidget *entryMinutes = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryMinutes,2,1,1,1);
-    gtk_editable_set_editable(GTK_EDITABLE(entryMinutes),FALSE);
+    GtkWidget *entryMinute = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
+    gtk_editable_set_editable(GTK_EDITABLE(entryMinute),FALSE);
     snprintf(temp,sizeof(temp),"%d",curTime.minute);
-    gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    gtk_editable_set_text(GTK_EDITABLE(entryMinute),temp);
 
-    gtk_widget_add_css_class(entryMinutes,"entryMinutes");
-    gtk_entry_set_alignment(GTK_ENTRY(entryMinutes),0.5);
-    gtk_widget_set_size_request(entryMinutes,90,90);
-    gtk_widget_set_hexpand(GTK_WIDGET(entryMinutes), FALSE);
+    gtk_widget_add_css_class(entryMinute,"entryMinutes");
+    gtk_entry_set_alignment(GTK_ENTRY(entryMinute),0.5);
+    gtk_widget_set_size_request(entryMinute,90,90);
+    gtk_widget_set_hexpand(GTK_WIDGET(entryMinute), FALSE);
 
 
     //Init of buttonHourDown
@@ -150,6 +150,8 @@ void screenAlarm() {
     struct tm *t = localtime(&now);
     curTime.hour = t->tm_hour;
     curTime.minute = t->tm_min;
+    printf("hour=%d\t",curTime.hour);
+    printf("min=%d\t",curTime.minute);
 }
 
 int main(int argc, char **argv){
