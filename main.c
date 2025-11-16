@@ -294,7 +294,7 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
         default:
             printf("switch gets nuttin");
     }
-
+    setTimeHour();
 }
 void alarmMinButton(GtkButton *button,gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
@@ -325,6 +325,7 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
         default:
             printf("switch gets nuttin");
     }
+    setTimeMinutes();
 }
 
 void setAlarm() {
