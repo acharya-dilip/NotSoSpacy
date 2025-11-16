@@ -20,7 +20,8 @@ entries to increase or decrease them to your liking
 - If you mistakenly selected the wrong time that click the "❌" button
 besides that Alarm to remove it
 - Once the Alarm is triggered a sound will constantly play until you press the stop button
-## Happy Clockin
+- 
+## Happy Clockin Sloppy Toppin
 
 # Demo Video
 -
@@ -44,7 +45,7 @@ besides that Alarm to remove it
 | sudo pacman -S gstreamer  | Installs Gstreamer           |
 | cd build                  | Navigates into the build dir |
 | cmake ..                  | Checks for the Cmake file    |
-|cmake --build .| Executes the build           |
+| cmake --build .           | Executes the build           |
 
 # Credit Goes To
 - @HolyBasil => This Guy Spent like 7 and a half hours on a single day cuz 
