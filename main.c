@@ -177,12 +177,16 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
         char temp[5];
         snprintf(temp,sizeof(temp),"%d",curTime.hour);
         gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    }//else {
-    //     curTime.hour--;
-    //     char temp[5];
-    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
-    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    // }
+    }
+    else {
+        if (curTime.hour==0) {
+            curTime.hour = 24;
+        }
+        curTime.hour--;
+        char temp[5];
+        snprintf(temp,sizeof(temp),"%d",curTime.hour);
+        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    }
 }
 void alarmMinButton(gpointer user_data) {
 
