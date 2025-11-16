@@ -189,6 +189,7 @@ void screenAddAlarm() {
     entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryHour),FALSE);
+    setTimeHour(); //Sets the correctly formatted time in the entryHour
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_hexpand(GTK_WIDGET(entryHour), FALSE);
@@ -214,6 +215,7 @@ void screenAddAlarm() {
     entryMinute = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryMinute),FALSE);
+    setTimeMinutes(); //Sets the correctly formatted time in the entryMinute
     gtk_widget_add_css_class(entryMinute,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinute),0.5);
     gtk_widget_set_size_request(entryMinute,90,90);
