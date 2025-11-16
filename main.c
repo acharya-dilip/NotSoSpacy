@@ -11,7 +11,7 @@ struct currentTime {
     int hour;
     int minute;
 }curTime;
-void alarmHourButton(gpointer user_data);
+void alarmHourButton(GtkButton *button, gpointer user_data);
 void alarmMinButton(gpointer user_data);
 
 static void activate(GtkApplication *app,gpointer user_data) {
@@ -103,7 +103,7 @@ void screenAlarm() {
     g_signal_connect(buttonHourUp,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(1));
 
     //Init of entryhours
-    GtkWidget *entryHour = gtk_entry_new();
+    entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryHour),FALSE);
     char temp[5];
@@ -164,19 +164,22 @@ void screenAlarm() {
     printf("min=%d\t",curTime.minute);
 }
 
-void alarmHourButton(gpointer user_data) {
+void alarmHourButton(GtkButton *button, gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
-    if (a==1) {
+    printf("\nalarmHourButton is executed");
+    printf("\na=%d",a);
+    if (a==1){
         curTime.hour++;
+        printf("\nChanged hour=%d\t",curTime.hour);
         char temp[5];
         snprintf(temp,sizeof(temp),"%d",curTime.hour);
         gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    }else {
-        curTime.hour--;
-        char temp[5];
-        snprintf(temp,sizeof(temp),"%d",curTime.hour);
-        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    }
+    }//else {
+    //     curTime.hour--;
+    //     char temp[5];
+    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    // }
 }
 void alarmMinButton(gpointer user_data) {
 
