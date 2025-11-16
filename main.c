@@ -5,6 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
+void screenAlarms();
 void screenAddAlarm();
 void fetchTime();
 struct currentTime {
@@ -72,6 +73,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
+
+}
+
+void screenAlarms() {
 
 }
 
