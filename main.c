@@ -379,6 +379,11 @@ void closeAlarm() {
     GtkWidget *windowClose = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowClose),"Alarm Ringing");
     gtk_window_present(GTK_WINDOW(windowClose));
+
+    //Init of gridParent
+    GtkWidget *gridParent = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(windowClose),gridParent);
+
 }
 
 int main(int argc, char **argv){
