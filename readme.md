@@ -24,7 +24,6 @@ besides that Alarm to remove it
 -
 
 # Arch Linux Build Instructions
-# Arch Build Instructions
 | Commands                                            | What They Do?                     |
 |-----------------------------------------------------|-----------------------------------|
 | git clone https://github.com/acharya/NotSoSpacy.git | Clones into the gh repo           |
@@ -33,3 +32,14 @@ besides that Alarm to remove it
 | ./install.sh                                        | Runs the install Script           |
 | cd build                                            | Navigates into the build dir      |
 | ./NotSoSpacy                                        | Runs the Clock                    |
+
+# What's inside the install.sh?
+| Commands                  | What They Do?                |
+|---------------------------|------------------------------|
+| sudo pacman -S base-devel | Installs Base devel          |
+| sudo pacman -S cmake      | Installs Cmake               |
+| sudo pacman -S gtk        | Installs GTK                 |
+| sudo pacman -S gstreamer  | Installs Gstreamer           |
+| cd build                  | Navigates into the build dir |
+| cmake ..                  | Checks for the Cmake file    |
+|cmake --build .| Executes the build           |
