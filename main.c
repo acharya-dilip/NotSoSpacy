@@ -34,8 +34,11 @@ void stopSound(); //Responsible for stopping the looping sound
 
 
 void fetchData() {
+    //Checks if a file named alarms.txt exsists if it doesn't creates one
     FILE *f = fopen("alarms.txt","a");
     fclose(f);
+
+    //Opens alarms.txt to read the previously stored data
     FILE *file = fopen("alarms.txt","rb");
     fread(&alarmCount, sizeof(int), 1, file);
     for (int i = 0; i < alarmCount; i++) {
@@ -48,6 +51,7 @@ void fetchData() {
 }
 
 void storeData() {
+    //Opens the alarms.txt file and write the stored data of struct alarms in alarms.txt for future use
     FILE *file=fopen("alarms.txt", "wb");
     fwrite(&alarmCount, sizeof(int), 1, file);
     for (int i = 0; i < alarmCount; i++) {
@@ -110,12 +114,14 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,16,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryTime),FALSE);
     gtk_widget_add_css_class(entryTime,"entryTime");
+    //Margins & Paddings
     gtk_widget_set_size_request(entryTime,300,80);
     gtk_entry_set_alignment(GTK_ENTRY(entryTime),0.5);
 
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
+
     //Calling and polling the checkAlarm Function
     g_timeout_add_seconds(30,checkAlarm,NULL);
     checkAlarm();
@@ -128,11 +134,13 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Init of scrollAlarms
     GtkWidget *scrollAlarms = gtk_scrolled_window_new();
     gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,2,16,1);
+    //Margins & Paddings
     gtk_widget_set_size_request(scrollAlarms,300,300);
 
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrollAlarms),gridParentAlarms);
+    //MArgins & PAddings
     gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
     gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
 
@@ -142,6 +150,8 @@ static void activate(GtkApplication *app,gpointer user_data) {
 }
 //Globlized Variables
 int musicState;
+//Music state = 0 -> music Not Playing
+//Music state = 1 -> muscic playing
 void bgMusic(GtkButton *button, gpointer user_data) {
     if (musicState==0) {
         musicState=1;
@@ -168,6 +178,7 @@ void declareAlarms() {
         gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i+2,1,1);
         gtk_widget_add_css_class(alarms[i].boxAlarm,"boxAlarm");
+        //MArgins & Paddings
         gtk_widget_set_size_request(alarms[i].boxAlarm,280,-1);
         gtk_widget_set_margin_top(alarms[i].boxAlarm,10);
 
@@ -201,6 +212,7 @@ void declareAlarms() {
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
         gtk_center_box_set_start_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].labelAlarmTime);
         gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
+        //Margins & Paddings
         gtk_widget_set_halign(alarms[i].labelAlarmTime,GTK_ALIGN_START);
 
         //Init of buttonDeleteAlarm
@@ -208,6 +220,7 @@ void declareAlarms() {
         gtk_center_box_set_end_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].buttonDeleteAlarm);
         g_signal_connect(alarms[i].buttonDeleteAlarm,"clicked",G_CALLBACK(deleteAlarm),GINT_TO_POINTER(i));
         gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
+        //Margins & Paddings
         gtk_widget_set_halign(alarms[i].buttonDeleteAlarm,GTK_ALIGN_END);
 
 
