@@ -7,7 +7,7 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarms();
 void declareAlarms();
-void deleteAlarm(int i);
+void deleteAlarm(GtkButton *button,gpointer user_data);
 void screenAddAlarm();
 void fetchTime();
 void setTimeHour();
@@ -117,6 +117,7 @@ void declareAlarms() {
         alarms[i].boxAlarm = gtk_center_box_new();
         gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i,1,1);
+        gtk_widget_add_css_class(alarms[i].boxAlarm,"boxAlarm");
 
         //Init of labelAlarm
         char alarmTime[15];
@@ -131,6 +132,7 @@ void declareAlarms() {
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
         gtk_center_box_set_end_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].buttonDeleteAlarm);
+        g_signal_connect(alarms[i].buttonDeleteAlarm,"clicked",G_CALLBACK(deleteAlarm),GINT_TO_POINTER(i));
         gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
         gtk_widget_set_halign(alarms[i].buttonDeleteAlarm,GTK_ALIGN_END);
 
@@ -138,12 +140,12 @@ void declareAlarms() {
     }
 }
 
-void deleteAlarm(int i) {
+void deleteAlarm(GtkButton *button, gpointer user_data) {
+    printf("\n deleteAlarm is executed");
+    int i = GPOINTER_TO_INT(user_data);
     for (int j = i; j!=alarmCount;j++) {
-        alarms[i].hour = alarms[i+1].hour;
-        alarms[i].minute = alarms[i+1].minute ;
-        alarms[i].labelAlarmTime = alarms[i+1].labelAlarmTime;
-        alarms[i].buttonDeleteAlarm = alarms[i+1].buttonDeleteAlarm;
+       alarms[j]=alarms[j+1];
+        alarmCount--;
     }
     declareAlarms();
 }
