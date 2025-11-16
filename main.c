@@ -389,6 +389,7 @@ void closeAlarm() {
     //Init of buttonStopAlarm
     GtkWidget *buttonStopAlarm = gtk_button_new_with_label("STOP ALARM");
     gtk_grid_attach(GTK_GRID(gridParent),buttonStopAlarm,0,0,1,1);
+    gtk_widget_add_css_class(buttonStopAlarm,"buttonStopAlarm");
 
 }
 
