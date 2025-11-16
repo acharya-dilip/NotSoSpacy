@@ -306,7 +306,11 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
 void setAlarm() {
     alarms[alarmCount].hour = curTime.hour;
     alarms[alarmCount].minute = curTime.minute;
+    printf("\n Alarm set for %d:%d",
+        alarms[alarmCount].hour,
+        alarms[alarmCount].minute);
     alarmCount++;
+
 }
 
 int main(int argc, char **argv){
