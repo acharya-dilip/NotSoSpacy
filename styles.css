@@ -5,25 +5,26 @@ window{
     background-repeat: no-repeat;
 }
 .entryTime{
-    color: black;
+
+    color: gray;
     font-size: 71px;
 
 }
 .entryHour{
-    color: black;
+    color: gray;
     font-size: 90px;
 }
 .entryMinutes{
-    color: black;
+    color: gray;
     font-size: 90px;
 }
 .labelSemiColon{
-    color: black;
+    color: gray;
     font-size: 90px;
 }
 .labelAlarmTime{
-    color: black;
-    font-size: 71px;
+    color: gray;
+    font-size: 40px;
 }
 .buttonDeleteAlarm{
 
