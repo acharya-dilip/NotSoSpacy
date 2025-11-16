@@ -2,8 +2,6 @@
 #include <gtk/gtk.h>
 #include <curl/curl.h>
 #include <time.h>
-
-
 gboolean updateTime(gpointer user_data);
 void bgMusic(GtkButton *button, gpointer user_data); // REsponsible for handling the bg music
 void fetchData(); //Responsible for fetching previously stored data in .txt files
@@ -31,13 +29,10 @@ struct alarms { //struct used to store all the alarms created
 gboolean checkAlarm(); //Checks if the current time is the time for any of the alarm triggering
 void closeAlarm(); //The closeAlarmWindow
 void stopSound(); //Responsible for stopping the looping sound
-
-
 void fetchData() {
     //Checks if a file named alarms.txt exsists if it doesn't creates one
     FILE *f = fopen("alarms.txt","a");
     fclose(f);
-
     //Opens alarms.txt to read the previously stored data
     FILE *file = fopen("alarms.txt","rb");
     fread(&alarmCount, sizeof(int), 1, file);
@@ -49,7 +44,6 @@ void fetchData() {
     }
     fclose(file);
 }
-
 void storeData() {
     //Opens the alarms.txt file and write the stored data of struct alarms in alarms.txt for future use
     FILE *file=fopen("alarms.txt", "wb");
@@ -59,7 +53,6 @@ void storeData() {
     }
     fclose(file);
 }
-
 //Globalised Variables
 GtkWidget *gridParentAlarms;
 GtkWidget *entryTime;
@@ -75,29 +68,23 @@ static void activate(GtkApplication *app,gpointer user_data) {
         GTK_STYLE_PROVIDER(provider),
         GTK_STYLE_PROVIDER_PRIORITY_USER
     );
-
-
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);
     gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
     gtk_window_set_title(GTK_WINDOW(windowMain),"NotSoSpacy");
     g_signal_connect(windowMain,"destroy",G_CALLBACK(stopSound),NULL);
     gtk_window_present(GTK_WINDOW(windowMain));
-
     //Init of headerbarMain
     GtkWidget *headerbarMain = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowMain),headerbarMain);
-
     //Init of buttonAddAlarm
     GtkWidget *buttonAddAlarm = gtk_button_new_with_label("➕");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAddAlarm);
     g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
-
     //Init of buttonBgMusic
     GtkWidget *buttonBgMusic = gtk_button_new_with_label("🔇");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonBgMusic);
     g_signal_connect(buttonBgMusic,"clicked",G_CALLBACK(bgMusic),NULL);
-
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowMain),gridParent);
@@ -108,7 +95,6 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_widget_set_margin_end(GTK_WIDGET(gridParent),10);
     gtk_widget_set_margin_top(GTK_WIDGET(gridParent),10);
     gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
-
     //Init of entryTime
     entryTime = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,16,1);
@@ -117,36 +103,29 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Margins & Paddings
     gtk_widget_set_size_request(entryTime,300,80);
     gtk_entry_set_alignment(GTK_ENTRY(entryTime),0.5);
-
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
-
     //Calling and polling the checkAlarm Function
     g_timeout_add_seconds(30,checkAlarm,NULL);
     checkAlarm();
-
     //Init of labelAlarms
     GtkWidget *labelAlarms = gtk_label_new("Alarms");
     gtk_grid_attach(GTK_GRID(gridParent),labelAlarms,0,1,16,1);
     gtk_widget_add_css_class(labelAlarms,"labelAlarms");
-
     //Init of scrollAlarms
     GtkWidget *scrollAlarms = gtk_scrolled_window_new();
     gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,2,16,1);
     //Margins & Paddings
     gtk_widget_set_size_request(scrollAlarms,300,300);
-
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrollAlarms),gridParentAlarms);
     //MArgins & PAddings
     gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
     gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
-
     //Declare the alarm subgrids
     declareAlarms();
-
 }
 //Globlized Variables
 int musicState;
@@ -162,9 +141,7 @@ void bgMusic(GtkButton *button, gpointer user_data) {
         gtk_button_set_label(GTK_BUTTON(button),"🔇");
         system(" pkill gst-play-1.0");
     }
-
 }
-
 void declareAlarms() {
     //Removes the old widgets
     GtkWidget *child;
@@ -181,10 +158,8 @@ void declareAlarms() {
         //MArgins & Paddings
         gtk_widget_set_size_request(alarms[i].boxAlarm,280,-1);
         gtk_widget_set_margin_top(alarms[i].boxAlarm,10);
-
         //Init of labelAlarm
         char alarmTime[15];
-
         if (alarms[i].hour < 10){
             if (alarms[i].minute<10) {
                 snprintf(alarmTime,sizeof(alarmTime),"0%d:0%d",
@@ -208,13 +183,11 @@ void declareAlarms() {
                    alarms[i].minute);
             }
         }
-
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
         gtk_center_box_set_start_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].labelAlarmTime);
         gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
         //Margins & Paddings
         gtk_widget_set_halign(alarms[i].labelAlarmTime,GTK_ALIGN_START);
-
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
         gtk_center_box_set_end_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].buttonDeleteAlarm);
@@ -222,11 +195,8 @@ void declareAlarms() {
         gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
         //Margins & Paddings
         gtk_widget_set_halign(alarms[i].buttonDeleteAlarm,GTK_ALIGN_END);
-
-
     }
 }
-
 void deleteAlarm(GtkButton *button, gpointer user_data) {
     int i = GPOINTER_TO_INT(user_data);
     for (int j = i; j!=alarmCount;j++) {
@@ -235,9 +205,6 @@ void deleteAlarm(GtkButton *button, gpointer user_data) {
     alarmCount--;
     declareAlarms();
 }
-
-
-
 gboolean updateTime(gpointer user_data) {
     GtkEntry *entryTime = GTK_ENTRY(user_data);
     GDateTime *timeCurrent = g_date_time_new_now_local();
@@ -245,23 +212,18 @@ gboolean updateTime(gpointer user_data) {
     gtk_editable_set_text(GTK_EDITABLE(entryTime), time);
     return G_SOURCE_CONTINUE;
 }
-
-
 //GLoblised Variables
 GtkWidget *windowAddAlarm;
 GtkWidget *entryHour;
 GtkWidget *entryMinute;
 void screenAddAlarm() {
-
     //Fetches the current time in the currentTime struct
     fetchTime();
-
     //Init of windowAlarm
     windowAddAlarm = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowAddAlarm),"Set Alarm");
     //gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
     gtk_window_present(GTK_WINDOW(windowAddAlarm));
-
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAddAlarm),gridParent);
@@ -271,12 +233,10 @@ void screenAddAlarm() {
     gtk_widget_set_margin_end(GTK_WIDGET(gridParent),10);
     gtk_widget_set_margin_top(GTK_WIDGET(gridParent),10);
     gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
-
     //Init of buttonHourUp
     GtkWidget *buttonHourUp = gtk_button_new_with_label("🔺");
     gtk_grid_attach(GTK_GRID(gridParent),buttonHourUp,0,0,1,1);
     g_signal_connect(buttonHourUp,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(1));
-
     //Init of entryhours
     entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
@@ -285,24 +245,18 @@ void screenAddAlarm() {
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_hexpand(GTK_WIDGET(entryHour), FALSE);
-
-
     //Init of buttonHourDown
     GtkWidget *buttonHourDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonHourDown,0,2,1,1);
     g_signal_connect(buttonHourDown,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(0));
-
-
     //Init of labelSemiColon
     GtkWidget *labelSemiColon = gtk_label_new(":");
     gtk_grid_attach(GTK_GRID(gridParent),labelSemiColon,1,1,1,1);
     gtk_widget_add_css_class(labelSemiColon,"labelSemiColon");
-
     //Init of buttonMinUp
     GtkWidget *buttonMinUp = gtk_button_new_with_label("🔺");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinUp,2,0,1,1);
     g_signal_connect(buttonMinUp,"clicked",G_CALLBACK(alarmMinButton),GINT_TO_POINTER(1));
-
     //Init of entryMinutes
     entryMinute = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
@@ -312,24 +266,17 @@ void screenAddAlarm() {
     gtk_entry_set_alignment(GTK_ENTRY(entryMinute),0.5);
     gtk_widget_set_size_request(entryMinute,90,90);
     gtk_widget_set_hexpand(GTK_WIDGET(entryMinute), FALSE);
-
     //Sets the correct time in the respective entries
-
     //Init of buttonHourDown
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
     g_signal_connect(buttonMinDown,"clicked",G_CALLBACK(alarmMinButton),GINT_TO_POINTER(0));
-
-
     //Init of buttonSetAlarm
     GtkWidget *buttonSetAlarm = gtk_button_new_with_label("Set Alarm");
     gtk_grid_attach(GTK_GRID(gridParent),buttonSetAlarm,0,3,3,1);
     g_signal_connect(buttonSetAlarm,"clicked",G_CALLBACK(setAlarm),NULL);
-
     gtk_widget_set_margin_top(buttonSetAlarm,10);
-
 }
-
 //fetches the current time
  void fetchTime() {
     time_t now = time(NULL);
@@ -337,7 +284,6 @@ void screenAddAlarm() {
     curTime.hour = t->tm_hour;
     curTime.minute = t->tm_min;
 }
-
 void setTimeHour() {
     char temp[5];
     //Appends the time format for hours
@@ -347,9 +293,7 @@ void setTimeHour() {
         snprintf(temp,sizeof(temp),"%d",curTime.hour);
     }
     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-
 }
-
 void setTimeMinutes() {
     char temp[5];
     //appends the time format for minutes
@@ -360,8 +304,6 @@ void setTimeMinutes() {
     }
     gtk_editable_set_text(GTK_EDITABLE(entryMinute),temp);
 }
-
-
 void alarmHourButton(GtkButton *button, gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
     printf("\nalarmHourButton is executed");
@@ -373,7 +315,6 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
             }
             curTime.hour--;
             break;
-
         case 1:
             if (curTime.hour==23) {
                 curTime.hour = -1;
@@ -412,7 +353,6 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
     }
     setTimeMinutes();
 }
-
 void setAlarm() {
     alarms[alarmCount].hour = curTime.hour;
     alarms[alarmCount].minute = curTime.minute;
@@ -442,23 +382,19 @@ void closeAlarm() {
     gtk_window_set_title(GTK_WINDOW(windowClose),"Alarm Ringing");
     gtk_window_set_default_size(GTK_WINDOW(windowClose),200,200);
     gtk_window_present(GTK_WINDOW(windowClose));
-
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowClose),gridParent);
     gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParent,GTK_ALIGN_CENTER);
-
     //attaching entryTime in the closeAlarmWIndow
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,1,1);
-
     //Init of buttonStopAlarm
     GtkWidget *buttonStopAlarm = gtk_button_new_with_label("STOP");
     gtk_grid_attach(GTK_GRID(gridParent),buttonStopAlarm,0,1,1,1);
     gtk_widget_add_css_class(buttonStopAlarm,"buttonStopAlarm");
     g_signal_connect(buttonStopAlarm,"clicked",G_CALLBACK(stopSound),NULL);
 }
-
 void stopSound() { //Please don't call me lazy ;-; too tired to create a seperate function
     system("pkill -f 'while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3'");
     system(" pkill gst-play-1.0");
@@ -470,6 +406,5 @@ int main(int argc, char **argv){//Why is the main so empty
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
     int status = g_application_run(G_APPLICATION(app), argc, argv);
     g_object_unref (app);
-
     return status;
 }
