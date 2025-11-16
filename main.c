@@ -26,7 +26,7 @@ struct alarms {
     GtkWidget *buttonDeleteAlarm;
     GtkWidget *boxAlarm;
 }alarms[10];
-void checkAlarm();
+gboolean checkAlarm();
 
 //Globalised Variables
 GtkWidget *gridParentAlarms;
@@ -80,6 +80,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Calling and Polling the updateTime Function
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
+    //Calling and polling the checkAlarm Function
+    g_timeout_add_seconds(30,checkAlarm,NULL);
+    checkAlarm();
+
 
     //Init of scrollAlarms
     GtkWidget *scrollAlarms = gtk_scrolled_window_new();
@@ -350,7 +354,7 @@ void setAlarm() {
     declareAlarms();
 }
 
-void checkAlarm() {
+gboolean checkAlarm() {
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
     int hour = t->tm_hour;
@@ -358,8 +362,10 @@ void checkAlarm() {
     for (int i=0;i<alarmCount;i++) {
         if (alarms[i].hour==hour && alarms[i].minute==minute) {
             //place what to do
+            printf("Alarm is RUNG!");
         }
     }
+    return G_SOURCE_CONTINUE;
 }
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
