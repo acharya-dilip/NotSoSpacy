@@ -27,7 +27,8 @@ struct alarms {
     GtkWidget *boxAlarm;
 }alarms[10];
 gboolean checkAlarm();
-
+void closeAlarm();
+void stopSound();
 //Globalised Variables
 GtkWidget *gridParentAlarms;
 static void activate(GtkApplication *app,gpointer user_data) {
@@ -390,7 +391,7 @@ void closeAlarm() {
     GtkWidget *buttonStopAlarm = gtk_button_new_with_label("STOP");
     gtk_grid_attach(GTK_GRID(gridParent),buttonStopAlarm,0,0,1,1);
     gtk_widget_add_css_class(buttonStopAlarm,"buttonStopAlarm");
-
+    g_signal_connect(buttonStopAlarm,"clicked",G_CALLBACK(stopSound),NULL);
 }
 
 void stopSound() {
