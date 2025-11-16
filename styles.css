@@ -1,20 +1,24 @@
 .entryTime{
     color: black;
     font-size: 71px;
-    text-align: center;
 
 }
 .entryHour{
     color: black;
     font-size: 90px;
-    text-align: center;
 }
 .entryMinutes{
     color: black;
     font-size: 90px;
-    text-align: center;
 }
 .labelSemiColon{
     color: black;
     font-size: 90px;
+}
+.labelAlarmTime{
+    color: black;
+    font-size: 71px;
+}
+.buttonDeleteAlarm{
+
 }

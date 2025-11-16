@@ -98,6 +98,9 @@ void screenAlarms() {
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarms),gridParentAlarms);
+    gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
+    gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(gridParentAlarms,GTK_ALIGN_CENTER);
 
     //Declare the alarm subgrids
     declareAlarms();
@@ -116,11 +119,13 @@ void declareAlarms() {
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].labelAlarmTime,0,i,8,1);
         gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
+        gtk_widget_set_halign(alarms[i].labelAlarmTime,GTK_ALIGN_START);
 
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].buttonDeleteAlarm,7,i,2,1);
         gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
+        gtk_widget_set_halign(alarms[i].buttonDeleteAlarm,GTK_ALIGN_END);
 
 
     }
