@@ -10,7 +10,8 @@ void declareAlarms();
 void deleteAlarm(int i);
 void screenAddAlarm();
 void fetchTime();
-void setTime();
+void setTimeHour();
+void setTimeMinutes();
 struct currentTime {
     int hour;
     int minute;
@@ -188,9 +189,6 @@ void screenAddAlarm() {
     entryHour = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryHour),FALSE);
-
-
-
     gtk_widget_add_css_class(entryHour,"entryHour");
     gtk_entry_set_alignment(GTK_ENTRY(entryHour),0.5);
     gtk_widget_set_hexpand(GTK_WIDGET(entryHour), FALSE);
@@ -216,13 +214,12 @@ void screenAddAlarm() {
     entryMinute = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryMinute),FALSE);
-
-
-
     gtk_widget_add_css_class(entryMinute,"entryMinutes");
     gtk_entry_set_alignment(GTK_ENTRY(entryMinute),0.5);
     gtk_widget_set_size_request(entryMinute,90,90);
     gtk_widget_set_hexpand(GTK_WIDGET(entryMinute), FALSE);
+
+    //Sets the correct time in the respective entries
 
     //Init of buttonHourDown
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
@@ -248,8 +245,9 @@ void screenAddAlarm() {
     printf("hour=%d\t",curTime.hour);
     printf("min=%d\t",curTime.minute);
 }
-void setTime() {
 
+
+void setTimeHour() {
     char temp[5];
     //Appends the time format for hours
     if (curTime.hour<10) {
@@ -257,17 +255,22 @@ void setTime() {
     }else {
         snprintf(temp,sizeof(temp),"%d",curTime.hour);
     }
+    gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
 
+}
+
+void setTimeMinutes() {
+    char temp[5];
     //appends the time format for minutes
     if (curTime.minute<10) {
         snprintf(temp,sizeof(temp),"0%d",curTime.minute);
     }else {
         snprintf(temp,sizeof(temp),"%d",curTime.minute);
     }
-    //Sets the values in their respective entries
-    gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
     gtk_editable_set_text(GTK_EDITABLE(entryMinute),temp);
 }
+
+
 void alarmHourButton(GtkButton *button, gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
     printf("\nalarmHourButton is executed");
