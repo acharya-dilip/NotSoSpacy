@@ -9,6 +9,8 @@ and gstreamer to play the sounds in the given program.
 
 # How to Use?
 - Look at your local time and have it open while you're doing your work
+- You can press the '🔇' button to turn on some chill space music
+- You can press the '🎧️' button to stop the chill music
 - Click the "➕" on the titlebar to add an Alarm/Reminder.
 - Click the "🔻🔺" buttons in the respective column of hours and
 entries to increase or decrease them to your liking

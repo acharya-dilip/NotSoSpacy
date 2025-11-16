@@ -47,7 +47,6 @@ void fetchData() {
     fclose(file);
 }
 
-
 void storeData() {
     FILE *file=fopen("alarms.txt", "wb");
     fwrite(&alarmCount, sizeof(int), 1, file);
