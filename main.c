@@ -31,6 +31,7 @@ void closeAlarm();
 void stopSound();
 //Globalised Variables
 GtkWidget *gridParentAlarms;
+GtkWidget *entryTime;
 static void activate(GtkApplication *app,gpointer user_data) {
 
     //Connecting the stylesheet
@@ -70,7 +71,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_widget_set_margin_bottom(GTK_WIDGET(gridParent),10);
 
     //Init of entryTime
-    GtkWidget *entryTime = gtk_entry_new();
+    entryTime = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,16,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryTime),FALSE);
     gtk_widget_add_css_class(entryTime,"entryTime");
