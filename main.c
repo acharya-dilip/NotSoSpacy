@@ -19,7 +19,7 @@ void setAlarm(); int alarmCount; //tracks how many alarms are there
 struct alarms {
     int hour;
     int minute;
-    GtkWidget *frameAlarm;
+    GtkWidget *gridAlarm;
     GtkWidget *labelAlarmTime;
     GtkWidget *buttonDeleteAlarm;
 }alarms[10];
@@ -103,7 +103,9 @@ void screenAlarms() {
 }
 
 void declareAlarms() {
-
+    for (int i=0;i<alarmCount;i++) {
+        alarms[alarmCount].gridAlarm
+    }
 }
 
 
