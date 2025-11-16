@@ -7,13 +7,20 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarm();
 void fetchTime();
-void setAlarm();
 struct currentTime {
     int hour;
     int minute;
 }curTime;
 void alarmHourButton(GtkButton *button, gpointer user_data);
 void alarmMinButton(GtkButton *button, gpointer user_data);
+void setAlarm();
+struct alarms {
+    int hour;
+    int minute;
+    GtkWidget *frameAlarm;
+    GtkWidget *labelAlarmTime;
+    GtkWidget *buttonDeleteAlarm;
+}alarms[10];
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
