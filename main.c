@@ -223,6 +223,7 @@ void screenAddAlarm() {
     //Init of buttonSetAlarm
     GtkWidget *buttonSetAlarm = gtk_button_new_with_label("Set Alarm");
     gtk_grid_attach(GTK_GRID(gridParent),buttonSetAlarm,0,3,3,1);
+    g_signal_connect(buttonSetAlarm,"clicked",G_CALLBACK(setAlarm),NULL);
 
     gtk_widget_set_margin_top(buttonSetAlarm,10);
 
