@@ -149,6 +149,7 @@ gboolean updateTime(gpointer user_data) {
     return G_SOURCE_CONTINUE;
 }
 //GLoblised Variables
+GtkWidget *windowAddAlarm;
 GtkWidget *entryHour;
 GtkWidget *entryMinute;
 void screenAddAlarm() {
@@ -157,7 +158,7 @@ void screenAddAlarm() {
     fetchTime();
 
     //Init of windowAlarm
-    GtkWidget *windowAddAlarm = gtk_window_new();
+    windowAddAlarm = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowAddAlarm),"Set Alarm");
     //gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
     gtk_window_present(GTK_WINDOW(windowAddAlarm));
