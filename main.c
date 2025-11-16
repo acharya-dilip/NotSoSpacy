@@ -188,7 +188,11 @@ void screenAddAlarm() {
     gtk_grid_attach(GTK_GRID(gridParent),entryHour,0,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryHour),FALSE);
     char temp[5];
-    snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    if (curTime.hour<10) {
+        snprintf(temp,sizeof(temp),"0%d",curTime.hour);
+    }else {
+        snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    }
     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
 
     gtk_widget_add_css_class(entryHour,"entryHour");
@@ -216,7 +220,11 @@ void screenAddAlarm() {
     entryMinute = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryMinute),FALSE);
-    snprintf(temp,sizeof(temp),"%d",curTime.minute);
+    if (curTime.minute<10) {
+        snprintf(temp,sizeof(temp),"0%d",curTime.minute);
+    }else {
+        snprintf(temp,sizeof(temp),"%d",curTime.minute);
+    }
     gtk_editable_set_text(GTK_EDITABLE(entryMinute),temp);
 
     gtk_widget_add_css_class(entryMinute,"entryMinutes");
