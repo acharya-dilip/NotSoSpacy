@@ -432,6 +432,7 @@ void stopSound() {
     system("pkill -f 'while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3'");
     system(" pkill gst-play-1.0");
     gtk_window_destroy(GTK_WINDOW(windowClose));
+    storeData();
 }
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
