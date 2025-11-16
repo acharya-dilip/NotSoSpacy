@@ -111,6 +111,10 @@ void screenAlarms() {
 
 void declareAlarms() {
     for (int i=0;i<alarmCount;i++) {
+        //Init of boxAlarm
+        alarms[i].boxAlarm = gtk_center_box_new();
+        gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
+        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i,1,1);
 
         //Init of labelAlarm
         char alarmTime[15];
