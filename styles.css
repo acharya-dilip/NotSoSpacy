@@ -42,7 +42,7 @@ window{
 }
 .labelAlarms{
     color: gray;
-    font-size: 70px;
+    font-size: 40px;
 }
 .boxAlarm{
     background-image: url("src/alarms.jpg");

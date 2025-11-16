@@ -167,7 +167,6 @@ void declareAlarms() {
 }
 
 void deleteAlarm(GtkButton *button, gpointer user_data) {
-    printf("\n deleteAlarm is executed");
     int i = GPOINTER_TO_INT(user_data);
     for (int j = i; j!=alarmCount;j++) {
        alarms[j]=alarms[j+1];
@@ -276,10 +275,7 @@ void screenAddAlarm() {
     struct tm *t = localtime(&now);
     curTime.hour = t->tm_hour;
     curTime.minute = t->tm_min;
-    printf("hour=%d\t",curTime.hour);
-    printf("min=%d\t",curTime.minute);
 }
-
 
 void setTimeHour() {
     char temp[5];
@@ -332,15 +328,12 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
     char tempk[5];
     char tempj[5];
-    printf("\nalarmMinuteButton is executed");
-    printf("\na=%d",a);
     switch (a) {
         case 0:
             if (curTime.minute==0) {
                 curTime.minute = 59;
             }
             curTime.minute--;
-            printf("\nChanged Minute=%d Minute is decreased\n",curTime.minute);
             snprintf(tempk,sizeof(tempk),"%d",curTime.minute);
             gtk_editable_set_text(GTK_EDITABLE(entryMinute),tempk);
             break;
@@ -350,12 +343,11 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
                 curTime.minute = -1;
             }
             curTime.minute++;
-            printf("\nChanged Minute=%d Minute is increased\n",curTime.minute);
             snprintf(tempj,sizeof(tempj),"%d",curTime.minute);
             gtk_editable_set_text(GTK_EDITABLE(entryMinute),tempj);
             break;
         default:
-            printf("switch gets nuttin");
+            printf("Nothing to see here");
     }
     setTimeMinutes();
 }
@@ -363,9 +355,6 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
 void setAlarm() {
     alarms[alarmCount].hour = curTime.hour;
     alarms[alarmCount].minute = curTime.minute;
-    printf("\n Alarm set for %d:%d",
-        alarms[alarmCount].hour,
-        alarms[alarmCount].minute);
     alarmCount++;
     declareAlarms();
     gtk_window_destroy(GTK_WINDOW(windowAddAlarm));
@@ -378,17 +367,17 @@ gboolean checkAlarm() {
     int minute = t->tm_min;
     for (int i=0;i<alarmCount;i++) {
         if (alarms[i].hour==hour && alarms[i].minute==minute) {
-            //place what to do
-            printf("Alarm is RUNG!");
             system("while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3 >/dev/null 2>&1; done &");
             closeAlarm();
         }
     }
     return G_SOURCE_CONTINUE;
 }
+//GLobalised variable
+GtkWidget *windowClose;
 void closeAlarm() {
     //Init of windowClose
-    GtkWidget *windowClose = gtk_window_new();
+    windowClose = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowClose),"Alarm Ringing");
     gtk_window_set_default_size(GTK_WINDOW(windowClose),200,200);
     gtk_window_present(GTK_WINDOW(windowClose));
@@ -399,9 +388,12 @@ void closeAlarm() {
     gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParent,GTK_ALIGN_CENTER);
 
+    //attaching entryTime in the closeAlarmWIndow
+    gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,1,1);
+
     //Init of buttonStopAlarm
     GtkWidget *buttonStopAlarm = gtk_button_new_with_label("STOP");
-    gtk_grid_attach(GTK_GRID(gridParent),buttonStopAlarm,0,0,1,1);
+    gtk_grid_attach(GTK_GRID(gridParent),buttonStopAlarm,0,1,1,1);
     gtk_widget_add_css_class(buttonStopAlarm,"buttonStopAlarm");
     g_signal_connect(buttonStopAlarm,"clicked",G_CALLBACK(stopSound),NULL);
 }
@@ -409,6 +401,7 @@ void closeAlarm() {
 void stopSound() {
     system("pkill -f 'while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3'");
     system(" pkill gst-play-1.0");
+    gtk_window_destroy(GTK_WINDOW(windowClose));
 }
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
