@@ -115,10 +115,12 @@ void declareAlarms() {
             alarms[i].minute);
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].labelAlarmTime,0,i,8,1);
+        gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
 
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].buttonDeleteAlarm,7,i,2,1);
+        gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
 
 
     }
