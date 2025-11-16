@@ -5,7 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
-void bgMusic(); // REsponsible for handling the bg music
+void bgMusic(GtkButton *button, gpointer user_data); // REsponsible for handling the bg music
 void fetchData(); //Responsible for fetching previously stored data in .txt files
 void storeData(); //Responsible for storing data for future use
 void declareAlarms(); //Declares the Alarm Blocks for the main window
@@ -141,8 +141,18 @@ static void activate(GtkApplication *app,gpointer user_data) {
     declareAlarms();
 
 }
-
-void bgMusic() {
+//Globlized Variables
+int musicState;
+void bgMusic(GtkButton *button, gpointer user_data) {
+    if (musicState==0) {
+        musicState=1;
+        gtk_label_set_text(GTK_LABEL(button),"🔈️");
+        system("gst-play-1.0 ./src/sounds/bgmusic.mp3 >/dev/null 2>&1 &");
+    }else {
+        musicState=0;
+        gtk_label_set_text(GTK_LABEL(button),"🔇️");
+        system(" pkill gst-play-1.0");
+    }
 
 }
 
