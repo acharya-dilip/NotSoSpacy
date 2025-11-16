@@ -102,6 +102,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
 
 void declareAlarms() {
+    GtkWidget *child;
+    while ((child = gtk_widget_get_first_child(GTK_WIDGET(gridParentAlarms))) != NULL) {
+        gtk_grid_remove(GTK_GRID(gridParentAlarms), child);
+    }
     for (int i=0;i<alarmCount;i++) {
         //Init of boxAlarm
         alarms[i].boxAlarm = gtk_center_box_new();
@@ -154,8 +158,8 @@ void deleteAlarm(GtkButton *button, gpointer user_data) {
     int i = GPOINTER_TO_INT(user_data);
     for (int j = i; j!=alarmCount;j++) {
        alarms[j]=alarms[j+1];
-        alarmCount--;
     }
+    alarmCount--;
     declareAlarms();
 }
 
