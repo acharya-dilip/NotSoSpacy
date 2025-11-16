@@ -138,7 +138,7 @@ void deleteAlarm(int i) {
         alarms[i].labelAlarmTime = alarms[i+1].labelAlarmTime;
         alarms[i].buttonDeleteAlarm = alarms[i+1].buttonDeleteAlarm;
     }
-
+    declareAlarms();
 }
 
 gboolean updateTime(gpointer user_data) {
@@ -311,6 +311,7 @@ void setAlarm() {
         alarms[alarmCount].hour,
         alarms[alarmCount].minute);
     alarmCount++;
+    declareAlarms();
 
 }
 
