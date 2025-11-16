@@ -5,7 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
-void fetchData();
+void fetchData(); //Responsible for fetching previously stored data in .txt files
 void declareAlarms(); //Declares the Alarm Blocks for the main window
 void deleteAlarm(GtkButton *button,gpointer user_data); //Responsible for handling the alarm deletion logic
 void screenAddAlarm(); //Window for adding additional Alarms
@@ -29,6 +29,14 @@ struct alarms { //struct used to store all the alarms created
 gboolean checkAlarm(); //Checks if the current time is the time for any of the alarm triggering
 void closeAlarm(); //The closeAlarmWindow
 void stopSound(); //Responsible for stopping the looping sound
+
+
+void fetchData() {
+    FILE *file = fopen("alarms.txt","a");
+    fclose(file);
+}
+
+
 //Globalised Variables
 GtkWidget *gridParentAlarms;
 GtkWidget *entryTime;
