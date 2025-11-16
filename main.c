@@ -166,27 +166,49 @@ void screenAlarm() {
 
 void alarmHourButton(GtkButton *button, gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
+    char temp[5];
     printf("\nalarmHourButton is executed");
     printf("\na=%d",a);
-    if (a==1){
-        if (curTime.hour==23) {
-            curTime.hour = -1;
-        }
-        curTime.hour++;
-        printf("\nChanged hour=%d\t",curTime.hour);
-        char temp[5];
-        snprintf(temp,sizeof(temp),"%d",curTime.hour);
-        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    switch (a) {
+        case 0:
+            if (curTime.hour==0) {
+                         curTime.hour = 24;
+            }
+            curTime.hour--;
+            snprintf(temp,sizeof(temp),"%d",curTime.hour);
+            gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+            break;
+
+        case 1:
+            if (curTime.hour==23) {
+                curTime.hour = -1;
+            }
+            curTime.hour++;
+            printf("\nChanged hour=%d\t",curTime.hour);
+            snprintf(temp,sizeof(temp),"%d",curTime.hour);
+            gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+        default:
+            printf("switch gets nuttin");
     }
-    else {
-        if (curTime.hour==0) {
-            curTime.hour = 24;
-        }
-        curTime.hour--;
-        char temp[5];
-        snprintf(temp,sizeof(temp),"%d",curTime.hour);
-        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    }
+    // if (a==1){
+    //     if (curTime.hour==23) {
+    //         curTime.hour = -1;
+    //     }
+    //     curTime.hour++;
+    //     printf("\nChanged hour=%d\t",curTime.hour);
+    //     char temp[5];
+    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    // }
+    // else if (a==0) {
+    //     if (curTime.hour==0) {
+    //         curTime.hour = 24;
+    //     }
+    //     curTime.hour--;
+    //     char temp[5];
+    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
+    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    // }
 }
 void alarmMinButton(gpointer user_data) {
 
