@@ -108,9 +108,24 @@ void declareAlarms() {
 
         //Init of labelAlarm
         char alarmTime[15];
-        snprintf(alarmTime,sizeof(alarmTime),"%d:%d",
-            alarms[i].hour,
-            alarms[i].minute);
+
+        if (alarms[i].hour < 10){
+            if (alarms[i].minute<10) {
+                snprintf(alarmTime,sizeof(alarmTime),"0%d:0%d",
+                    alarms[i].hour,
+                    alarms[i].minute);
+            }
+            snprintf(alarmTime,sizeof(alarmTime),"0%d:%d",
+                    alarms[i].hour,
+                    alarms[i].minute);
+        }else {
+            if (alarms[i].minute <10) {
+                snprintf(alarmTime,sizeof(alarmTime),"%d:0%d",
+                    alarms[i].hour,
+                    alarms[i].minute);
+            }
+        }
+
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
         gtk_center_box_set_start_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].labelAlarmTime);
         gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
