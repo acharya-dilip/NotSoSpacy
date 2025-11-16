@@ -94,6 +94,10 @@ void screenAlarms() {
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerAlarms),buttonAddAlarm);
     g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
 
+    //init of gridParentAlarms
+    GtkWidget *gridParentAlarms = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(windowAlarms),gridParentAlarms);
+
 
 }
 
