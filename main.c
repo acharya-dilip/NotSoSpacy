@@ -12,7 +12,7 @@ struct currentTime {
     int minute;
 }curTime;
 void alarmHourButton(GtkButton *button, gpointer user_data);
-void alarmMinButton(gpointer user_data);
+void alarmMinButton(GtkButton *button, gpointer user_data);
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
@@ -76,6 +76,7 @@ gboolean updateTime(gpointer user_data) {
 }
 //GLoblised Variables
 GtkWidget *entryHour;
+GtkWidget *entryMinute;
 void screenAlarm() {
 
     //Fetches the current time in the currentTime struct
@@ -132,7 +133,7 @@ void screenAlarm() {
     g_signal_connect(buttonMinUp,"clicked",G_CALLBACK(alarmMinButton),GINT_TO_POINTER(1));
 
     //Init of entryMinutes
-    GtkWidget *entryMinute = gtk_entry_new();
+    entryMinute = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryMinute,2,1,1,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryMinute),FALSE);
     snprintf(temp,sizeof(temp),"%d",curTime.minute);
@@ -197,7 +198,7 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
             printf("switch gets nuttin");
     }
 }
-void alarmMinButton(gpointer user_data) {
+void alarmMinButton(GtkButton *button,gpointer user_data) {
 
 }
 
