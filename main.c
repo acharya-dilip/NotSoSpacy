@@ -137,10 +137,15 @@ void screenAlarm() {
     gtk_widget_set_size_request(entryMinute,90,90);
     gtk_widget_set_hexpand(GTK_WIDGET(entryMinute), FALSE);
 
-
     //Init of buttonHourDown
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
+
+    //Init of buttonSetAlarm
+    GtkWidget *buttonSetAlarm = gtk_button_new_with_label("Set Alarm");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSetAlarm,0,3,3,1);
+
+    gtk_widget_set_margin_top(buttonSetAlarm,10);
 
 }
 
