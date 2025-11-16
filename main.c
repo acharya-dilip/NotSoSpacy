@@ -369,10 +369,12 @@ gboolean checkAlarm() {
         if (alarms[i].hour==hour && alarms[i].minute==minute) {
             //place what to do
             printf("Alarm is RUNG!");
+            system("while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3 >/dev/null 2>&1; done &");
         }
     }
     return G_SOURCE_CONTINUE;
 }
+
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
