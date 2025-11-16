@@ -89,6 +89,11 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAddAlarm);
     g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
 
+    //Init of buttonBgMusic
+    GtkWidget *buttonBgMusic = gtk_button_new_with_label("🔇");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonBgMusic);
+    g_signal_connect(buttonBgMusic,"clicked",G_CALLBACK(bgMusic),NULL);
+
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowMain),gridParent);
