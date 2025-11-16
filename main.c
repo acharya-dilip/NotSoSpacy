@@ -118,7 +118,7 @@ void screenAlarm() {
     //Init of buttonHourDown
     GtkWidget *buttonHourDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonHourDown,0,2,1,1);
-    g_signal_connect(buttonHourUp,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(0));
+    g_signal_connect(buttonHourDown,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(0));
 
 
     //Init of labelSemiColon
@@ -166,7 +166,8 @@ void screenAlarm() {
 
 void alarmHourButton(GtkButton *button, gpointer user_data) {
     int a = GPOINTER_TO_INT(user_data);
-    char temp[5];
+    char tempk[5];
+    char tempj[5];
     printf("\nalarmHourButton is executed");
     printf("\na=%d",a);
     switch (a) {
@@ -175,8 +176,9 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
                          curTime.hour = 24;
             }
             curTime.hour--;
-            snprintf(temp,sizeof(temp),"%d",curTime.hour);
-            gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+            printf("\nChanged hour=%d hour is decreased\n",curTime.hour);
+            snprintf(tempk,sizeof(tempk),"%d",curTime.hour);
+            gtk_editable_set_text(GTK_EDITABLE(entryHour),tempk);
             break;
 
         case 1:
@@ -184,9 +186,10 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
                 curTime.hour = -1;
             }
             curTime.hour++;
-            printf("\nChanged hour=%d\t",curTime.hour);
-            snprintf(temp,sizeof(temp),"%d",curTime.hour);
-            gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+            printf("\nChanged hour=%d hour is increased\n",curTime.hour);
+            snprintf(tempj,sizeof(tempj),"%d",curTime.hour);
+            gtk_editable_set_text(GTK_EDITABLE(entryHour),tempj);
+            break;
         default:
             printf("switch gets nuttin");
     }
