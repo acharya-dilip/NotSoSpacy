@@ -122,7 +122,7 @@ void declareAlarms() {
             alarms[i].hour,
             alarms[i].minute);
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
-        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].labelAlarmTime,0,i,8,1);
+        gtk_center_box_set_start_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].labelAlarmTime);
         gtk_widget_add_css_class(alarms[i].labelAlarmTime,"labelAlarmTime");
         gtk_widget_set_halign(alarms[i].labelAlarmTime,GTK_ALIGN_START);
 
