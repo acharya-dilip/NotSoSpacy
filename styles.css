@@ -40,6 +40,10 @@ window{
     color: gray;
     font-size: 71px;
 }
+.labelAlarms{
+    color: gray;
+    font-size: 70px;
+}
 .boxAlarm{
     background-image: url("src/alarms.jpg");
     background-size: cover;

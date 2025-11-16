@@ -367,6 +367,7 @@ void setAlarm() {
         alarms[alarmCount].minute);
     alarmCount++;
     declareAlarms();
+    gtk_window_destroy(GTK_WINDOW(windowAddAlarm));
 }
 
 gboolean checkAlarm() {
@@ -379,6 +380,7 @@ gboolean checkAlarm() {
             //place what to do
             printf("Alarm is RUNG!");
             system("while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3 >/dev/null 2>&1; done &");
+            closeAlarm();
         }
     }
     return G_SOURCE_CONTINUE;
