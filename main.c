@@ -99,6 +99,7 @@ void screenAlarm() {
     //Init of buttonHourUp
     GtkWidget *buttonHourUp = gtk_button_new_with_label("🔺");
     gtk_grid_attach(GTK_GRID(gridParent),buttonHourUp,0,0,1,1);
+    g_signal_connect(buttonHourUp,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(1));
 
     //Init of entryhours
     GtkWidget *entryHour = gtk_entry_new();
@@ -116,6 +117,7 @@ void screenAlarm() {
     //Init of buttonHourDown
     GtkWidget *buttonHourDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonHourDown,0,2,1,1);
+    g_signal_connect(buttonHourUp,"clicked",G_CALLBACK(alarmHourButton),GINT_TO_POINTER(0));
 
 
     //Init of labelSemiColon
@@ -160,12 +162,14 @@ void screenAlarm() {
     printf("hour=%d\t",curTime.hour);
     printf("min=%d\t",curTime.minute);
 }
+
 void alarmHourButton(gpointer user_data) {
 
 }
 void alarmMinButton(gpointer user_data) {
 
 }
+
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
