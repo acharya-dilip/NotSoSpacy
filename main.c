@@ -129,6 +129,7 @@ void screenAlarm() {
     //Init of buttonMinUp
     GtkWidget *buttonMinUp = gtk_button_new_with_label("🔺");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinUp,2,0,1,1);
+    g_signal_connect(buttonMinUp,"clicked",G_CALLBACK(alarmMinButton),GINT_TO_POINTER(1));
 
     //Init of entryMinutes
     GtkWidget *entryMinute = gtk_entry_new();
@@ -145,6 +146,8 @@ void screenAlarm() {
     //Init of buttonHourDown
     GtkWidget *buttonMinDown = gtk_button_new_with_label("🔻");
     gtk_grid_attach(GTK_GRID(gridParent),buttonMinDown,2,2,1,1);
+    g_signal_connect(buttonMinDown,"clicked",G_CALLBACK(alarmMinButton),GINT_TO_POINTER(0));
+
 
     //Init of buttonSetAlarm
     GtkWidget *buttonSetAlarm = gtk_button_new_with_label("Set Alarm");
@@ -193,25 +196,6 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
         default:
             printf("switch gets nuttin");
     }
-    // if (a==1){
-    //     if (curTime.hour==23) {
-    //         curTime.hour = -1;
-    //     }
-    //     curTime.hour++;
-    //     printf("\nChanged hour=%d\t",curTime.hour);
-    //     char temp[5];
-    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
-    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    // }
-    // else if (a==0) {
-    //     if (curTime.hour==0) {
-    //         curTime.hour = 24;
-    //     }
-    //     curTime.hour--;
-    //     char temp[5];
-    //     snprintf(temp,sizeof(temp),"%d",curTime.hour);
-    //     gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
-    // }
 }
 void alarmMinButton(gpointer user_data) {
 
