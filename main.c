@@ -74,7 +74,8 @@ gboolean updateTime(gpointer user_data) {
     gtk_editable_set_text(GTK_EDITABLE(entryTime), time);
     return G_SOURCE_CONTINUE;
 }
-
+//GLoblised Variables
+GtkWidget *entryHour;
 void screenAlarm() {
 
     //Fetches the current time in the currentTime struct
@@ -164,7 +165,18 @@ void screenAlarm() {
 }
 
 void alarmHourButton(gpointer user_data) {
-
+    int a = GPOINTER_TO_INT(user_data);
+    if (a==1) {
+        curTime.hour++;
+        char temp[5];
+        snprintf(temp,sizeof(temp),"%d",curTime.hour);
+        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    }else {
+        curTime.hour--;
+        char temp[5];
+        snprintf(temp,sizeof(temp),"%d",curTime.hour);
+        gtk_editable_set_text(GTK_EDITABLE(entryHour),temp);
+    }
 }
 void alarmMinButton(gpointer user_data) {
 
