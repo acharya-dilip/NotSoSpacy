@@ -20,7 +20,6 @@ void setAlarm(); int alarmCount=0; //tracks how many alarms are there
 struct alarms {
     int hour;
     int minute;
-    GtkWidget *gridAlarm;
     GtkWidget *labelAlarmTime;
     GtkWidget *buttonDeleteAlarm;
 }alarms[10];
@@ -109,21 +108,17 @@ void screenAlarms() {
 void declareAlarms() {
     for (int i=0;i<alarmCount;i++) {
 
-        //Init of the grid that'll hold the alarm time and the remove alarm button
-        alarms[i].gridAlarm = gtk_grid_new();
-        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].gridAlarm,0,1,10,1);
-
         //Init of labelAlarm
         char alarmTime[15];
         snprintf(alarmTime,sizeof(alarmTime),"%d:%d",
             alarms[i].hour,
             alarms[i].minute);
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
-        gtk_grid_attach(GTK_GRID(alarms[i].gridAlarm),alarms[i].labelAlarmTime,0,0,8,1);
+        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].labelAlarmTime,0,i,8,1);
 
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new();
-        gtk_grid_attach(GTK_GRID(alarms[i].gridAlarm),alarms[i].buttonDeleteAlarm,7,1,2,1);
+        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].buttonDeleteAlarm,7,i,2,1);
 
 
     }
