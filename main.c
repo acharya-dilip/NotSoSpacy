@@ -78,6 +78,9 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
 void screenAlarms() {
 
+
+
+
 }
 
 gboolean updateTime(gpointer user_data) {
@@ -96,14 +99,14 @@ void screenAddAlarm() {
     fetchTime();
 
     //Init of windowAlarm
-    GtkWidget *windowAlarm = gtk_window_new();
-    gtk_window_set_title(GTK_WINDOW(windowAlarm),"Set Alarm");
+    GtkWidget *windowAddAlarm = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowAddAlarm),"Set Alarm");
     //gtk_window_set_default_size(GTK_WINDOW(windowAlarm),600,400);
-    gtk_window_present(GTK_WINDOW(windowAlarm));
+    gtk_window_present(GTK_WINDOW(windowAddAlarm));
 
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
-    gtk_window_set_child(GTK_WINDOW(windowAlarm),gridParent);
+    gtk_window_set_child(GTK_WINDOW(windowAddAlarm),gridParent);
     gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParent,GTK_ALIGN_CENTER);
     gtk_widget_set_margin_start(GTK_WIDGET(gridParent),10);
