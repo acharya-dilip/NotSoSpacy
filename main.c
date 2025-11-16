@@ -13,7 +13,7 @@ struct currentTime {
 }curTime;
 void alarmHourButton(GtkButton *button, gpointer user_data);
 void alarmMinButton(GtkButton *button, gpointer user_data);
-void setAlarm();
+void setAlarm(); int alarmCount; //tracks how many alarms are there
 struct alarms {
     int hour;
     int minute;
@@ -238,7 +238,9 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
 }
 
 void setAlarm() {
-
+    alarms[alarmCount].hour = curTime.hour;
+    alarms[alarmCount].minute = curTime.minute;
+    alarmCount++;
 }
 
 int main(int argc, char **argv){
