@@ -91,6 +91,7 @@ void screenAlarms() {
     //Init of buttonAddAlarm
     GtkWidget *buttonAddAlarm = gtk_button_new_with_label("➕");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerAlarms),buttonAddAlarm);
+    g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
 
 
 }
