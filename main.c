@@ -39,9 +39,7 @@ void fetchData() {
     fread(&alarmCount, sizeof(int), 1, file);
 
     for (int i = 0; i < alarmCount; i++) {
-        // Read only the first 2 ints
         fread(&alarms[i], sizeof(int) * 2, 1, file);
-        // Pointers remain uninitialized, set them to NULL
         alarms[i].labelAlarmTime = NULL;
         alarms[i].buttonDeleteAlarm = NULL;
         alarms[i].boxAlarm = NULL;
@@ -55,6 +53,7 @@ void fetchData() {
 GtkWidget *gridParentAlarms;
 GtkWidget *entryTime;
 static void activate(GtkApplication *app,gpointer user_data) {
+    //Fectches the data from alarms.txt binary
     fetchData();
     //Connecting the stylesheet
     GtkCssProvider *provider = gtk_css_provider_new();
