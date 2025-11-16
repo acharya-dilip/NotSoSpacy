@@ -383,6 +383,8 @@ void closeAlarm() {
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowClose),gridParent);
+    gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(gridParent,GTK_ALIGN_CENTER);
 
     //Init of buttonStopAlarm
     GtkWidget *buttonStopAlarm = gtk_button_new_with_label("STOP ALARM");
