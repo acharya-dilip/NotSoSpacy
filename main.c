@@ -169,6 +169,9 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
     printf("\nalarmHourButton is executed");
     printf("\na=%d",a);
     if (a==1){
+        if (curTime.hour==23) {
+            curTime.hour = -1;
+        }
         curTime.hour++;
         printf("\nChanged hour=%d\t",curTime.hour);
         char temp[5];
