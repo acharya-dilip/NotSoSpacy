@@ -5,6 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
+void fetchData();
 void declareAlarms(); //Declares the Alarm Blocks for the main window
 void deleteAlarm(GtkButton *button,gpointer user_data); //Responsible for handling the alarm deletion logic
 void screenAddAlarm(); //Window for adding additional Alarms
