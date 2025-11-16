@@ -90,7 +90,6 @@ static void activate(GtkApplication *app,gpointer user_data) {
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrollAlarms),gridParentAlarms);
     gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
     gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(gridParentAlarms,GTK_ALIGN_CENTER);
 
     //Declare the alarm subgrids
     declareAlarms();
@@ -105,6 +104,7 @@ void declareAlarms() {
         gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i+2,1,1);
         gtk_widget_add_css_class(alarms[i].boxAlarm,"boxAlarm");
+        gtk_widget_set_margin_top(alarms[i].boxAlarm,10);
 
         //Init of labelAlarm
         char alarmTime[15];
