@@ -27,6 +27,8 @@ struct alarms {
     GtkWidget *boxAlarm;
 }alarms[10];
 
+//Globalised Variables
+GtkWidget *gridParentAlarms;
 static void activate(GtkApplication *app,gpointer user_data) {
 
     //Connecting the stylesheet
@@ -50,10 +52,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
     GtkWidget *headerbarMain = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowMain),headerbarMain);
 
-    //Init of buttonAlarm
-    GtkWidget *buttonAlarm = gtk_button_new_with_label("⏰");
-    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAlarm);
-    g_signal_connect(buttonAlarm,"clicked",G_CALLBACK(screenAlarms),NULL);
+    //Init of buttonAddAlarm
+    GtkWidget *buttonAddAlarm = gtk_button_new_with_label("➕");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAddAlarm);
+    g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
 
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
@@ -68,7 +70,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
     //Init of entryTime
     GtkWidget *entryTime = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,4,15,4);
+    gtk_grid_attach(GTK_GRID(gridParent),entryTime,0,0,16,1);
     gtk_editable_set_editable(GTK_EDITABLE(entryTime),FALSE);
     gtk_widget_add_css_class(entryTime,"entryTime");
     gtk_widget_set_size_request(entryTime,300,80);
@@ -78,29 +80,9 @@ static void activate(GtkApplication *app,gpointer user_data) {
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
 
-}
-//Globalised variables
-GtkWidget *gridParentAlarms;
-void screenAlarms() {
-
-    //Init of windowAlarms
-    GtkWidget *windowAlarms = gtk_window_new();
-    gtk_window_set_default_size(GTK_WINDOW(windowAlarms),400,500);
-    gtk_window_set_title(GTK_WINDOW(windowAlarms),"Alarms");
-    gtk_window_present(GTK_WINDOW(windowAlarms));
-
-    //Init of headerAlarms
-    GtkWidget *headerAlarms = gtk_header_bar_new();
-    gtk_window_set_titlebar(GTK_WINDOW(windowAlarms),headerAlarms);
-
-    //Init of buttonAddAlarm
-    GtkWidget *buttonAddAlarm = gtk_button_new_with_label("➕");
-    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerAlarms),buttonAddAlarm);
-    g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
-
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
-    gtk_window_set_child(GTK_WINDOW(windowAlarms),gridParentAlarms);
+    gtk_grid_attach(GTK_GRID(gridParent),gridParentAlarms,0,1,16,1);
     gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
     gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParentAlarms,GTK_ALIGN_CENTER);
@@ -110,12 +92,13 @@ void screenAlarms() {
 
 }
 
+
 void declareAlarms() {
     for (int i=0;i<alarmCount;i++) {
         //Init of boxAlarm
         alarms[i].boxAlarm = gtk_center_box_new();
         gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
-        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i,1,1);
+        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i+2,1,1);
         gtk_widget_add_css_class(alarms[i].boxAlarm,"boxAlarm");
 
         //Init of labelAlarm
