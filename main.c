@@ -5,6 +5,7 @@
 
 
 gboolean updateTime(gpointer user_data);
+void bgMusic(); // REsponsible for handling the bg music
 void fetchData(); //Responsible for fetching previously stored data in .txt files
 void storeData(); //Responsible for storing data for future use
 void declareAlarms(); //Declares the Alarm Blocks for the main window
@@ -141,6 +142,9 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
 }
 
+void bgMusic() {
+
+}
 
 void declareAlarms() {
     //Removes the old widgets
