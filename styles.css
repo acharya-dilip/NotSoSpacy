@@ -11,10 +11,18 @@ window{
 
 }
 .entryHour{
+    background-image: url("src/entries.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: gray;
     font-size: 90px;
 }
 .entryMinutes{
+    background-image: url("src/entries.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: gray;
     font-size: 90px;
 }
