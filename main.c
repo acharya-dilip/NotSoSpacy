@@ -16,7 +16,7 @@ struct currentTime {
 }curTime;
 void alarmHourButton(GtkButton *button, gpointer user_data);
 void alarmMinButton(GtkButton *button, gpointer user_data);
-void setAlarm(); int alarmCount; //tracks how many alarms are there
+void setAlarm(); int alarmCount=0; //tracks how many alarms are there
 struct alarms {
     int hour;
     int minute;
@@ -99,6 +99,9 @@ void screenAlarms() {
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarms),gridParentAlarms);
+
+    //Declare the alarm subgrids
+    declareAlarms();
 
 
 }
