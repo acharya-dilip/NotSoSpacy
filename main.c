@@ -7,6 +7,7 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarms();
 void declareAlarms();
+void deleteAlarm();
 void screenAddAlarm();
 void fetchTime();
 struct currentTime {
@@ -125,6 +126,9 @@ void declareAlarms() {
     }
 }
 
+void deleteAlarm() {
+
+}
 
 gboolean updateTime(gpointer user_data) {
     GtkEntry *entryTime = GTK_ENTRY(user_data);
