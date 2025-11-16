@@ -7,6 +7,7 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarm();
 void fetchTime();
+void setAlarm();
 struct currentTime {
     int hour;
     int minute;
@@ -227,6 +228,10 @@ void alarmMinButton(GtkButton *button,gpointer user_data) {
         default:
             printf("switch gets nuttin");
     }
+}
+
+void setAlarm() {
+
 }
 
 int main(int argc, char **argv){
