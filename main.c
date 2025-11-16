@@ -127,18 +127,22 @@ void declareAlarms() {
                     alarms[i].hour,
                     alarms[i].minute);
             }
-            snprintf(alarmTime,sizeof(alarmTime),"0%d:%d",
-                    alarms[i].hour,
-                    alarms[i].minute);
-        }else {
+            else {
+                snprintf(alarmTime,sizeof(alarmTime),"0%d:%d",
+                   alarms[i].hour,
+                   alarms[i].minute);
+            }
+            }else {
             if (alarms[i].minute <10) {
                 snprintf(alarmTime,sizeof(alarmTime),"%d:0%d",
                     alarms[i].hour,
                     alarms[i].minute);
             }
-            snprintf(alarmTime,sizeof(alarmTime),"%d:%d",
-                    alarms[i].hour,
-                    alarms[i].minute);
+            else {
+                snprintf(alarmTime,sizeof(alarmTime),"%d:%d",
+                   alarms[i].hour,
+                   alarms[i].minute);
+            }
         }
 
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
