@@ -7,7 +7,7 @@
 gboolean updateTime(gpointer user_data);
 void screenAlarms();
 void declareAlarms();
-void deleteAlarm();
+void deleteAlarm(int i);
 void screenAddAlarm();
 void fetchTime();
 struct currentTime {
@@ -126,7 +126,14 @@ void declareAlarms() {
     }
 }
 
-void deleteAlarm() {
+void deleteAlarm(int i) {
+    for (int j = i; j!=alarmCount;j++) {
+        alarms[i].hour = alarms[i+1].hour;
+        alarms[i].minute = alarms[i+1].minute ;
+        alarms[i].gridAlarm = alarms[i+1].gridAlarm;
+        alarms[i].labelAlarmTime = alarms[i+1].labelAlarmTime;
+        alarms[i].buttonDeleteAlarm = alarms[i+1].buttonDeleteAlarm;
+    }
 
 }
 
