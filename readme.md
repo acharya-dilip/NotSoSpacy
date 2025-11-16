@@ -45,3 +45,8 @@ besides that Alarm to remove it
 | cd build                  | Navigates into the build dir |
 | cmake ..                  | Checks for the Cmake file    |
 |cmake --build .| Executes the build           |
+
+# Credit Goes To
+- @HolyBasil
+- contactme: acharyamission6@gmail.com
+- I had fun building this but was dissapointed to see how it turned out alot sloppier than I thought
