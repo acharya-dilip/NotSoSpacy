@@ -83,6 +83,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Init of scrollAlarms
     GtkWidget *scrollAlarms = gtk_scrolled_window_new();
     gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,1,16,1);
+    gtk_widget_set_size_request(scrollAlarms,300,300);
 
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
