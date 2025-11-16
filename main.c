@@ -5,30 +5,29 @@
 
 
 gboolean updateTime(gpointer user_data);
-void screenAlarms();
-void declareAlarms();
-void deleteAlarm(GtkButton *button,gpointer user_data);
-void screenAddAlarm();
-void fetchTime();
-void setTimeHour();
-void setTimeMinutes();
-struct currentTime {
+void declareAlarms(); //Declares the Alarm Blocks for the main window
+void deleteAlarm(GtkButton *button,gpointer user_data); //Responsible for handling the alarm deletion logic
+void screenAddAlarm(); //Window for adding additional Alarms
+void fetchTime(); //Fetches the current time
+void setTimeHour(); // Correctly formats single digit hour to have a 0 ahead of them
+void setTimeMinutes(); // Correctly formats single digit minute to have a 0 ahead of them
+struct currentTime { //struct used by fetchTime() to store the current time
     int hour;
     int minute;
 }curTime;
-void alarmHourButton(GtkButton *button, gpointer user_data);
-void alarmMinButton(GtkButton *button, gpointer user_data);
+void alarmHourButton(GtkButton *button, gpointer user_data); //Responsible for handling the increement and decreement button logic for hours
+void alarmMinButton(GtkButton *button, gpointer user_data); //Responsible for handling the increement and decreement button logic for minutes
 void setAlarm(); int alarmCount=0; //tracks how many alarms are there
-struct alarms {
+struct alarms { //struct used to store all the alarms created
     int hour;
     int minute;
     GtkWidget *labelAlarmTime;
     GtkWidget *buttonDeleteAlarm;
     GtkWidget *boxAlarm;
-}alarms[10];
-gboolean checkAlarm();
-void closeAlarm();
-void stopSound();
+}alarms[30];
+gboolean checkAlarm(); //Checks if the current time is the time for any of the alarm triggering
+void closeAlarm(); //The closeAlarmWindow
+void stopSound(); //Responsible for stopping the looping sound
 //Globalised Variables
 GtkWidget *gridParentAlarms;
 GtkWidget *entryTime;
