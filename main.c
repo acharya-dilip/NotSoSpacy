@@ -420,7 +420,7 @@ void setAlarm() {
     declareAlarms();
     gtk_window_destroy(GTK_WINDOW(windowAddAlarm));
 }
-
+//Nothing to find over here
 gboolean checkAlarm() {
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
@@ -459,13 +459,13 @@ void closeAlarm() {
     g_signal_connect(buttonStopAlarm,"clicked",G_CALLBACK(stopSound),NULL);
 }
 
-void stopSound() {
+void stopSound() { //Please don't call me lazy ;-; too tired to create a seperate function
     system("pkill -f 'while true; do gst-play-1.0 ./src/sounds/spaceAlarm.mp3'");
     system(" pkill gst-play-1.0");
     gtk_window_destroy(GTK_WINDOW(windowClose));
     storeData();
 }
-int main(int argc, char **argv){
+int main(int argc, char **argv){//Why is the main so empty
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
     int status = g_application_run(G_APPLICATION(app), argc, argv);
