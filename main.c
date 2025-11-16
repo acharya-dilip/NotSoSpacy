@@ -11,6 +11,8 @@ struct currentTime {
     int hour;
     int minute;
 }curTime;
+void alarmHourButton(gpointer user_data);
+void alarmMinButton(gpointer user_data);
 
 static void activate(GtkApplication *app,gpointer user_data) {
 
@@ -158,7 +160,12 @@ void screenAlarm() {
     printf("hour=%d\t",curTime.hour);
     printf("min=%d\t",curTime.minute);
 }
+void alarmHourButton(gpointer user_data) {
 
+}
+void alarmMinButton(gpointer user_data) {
+
+}
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
