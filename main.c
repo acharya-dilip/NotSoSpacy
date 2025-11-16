@@ -22,6 +22,7 @@ struct alarms {
     int minute;
     GtkWidget *labelAlarmTime;
     GtkWidget *buttonDeleteAlarm;
+    GtkWidget *boxAlarm;
 }alarms[10];
 
 static void activate(GtkApplication *app,gpointer user_data) {
@@ -313,7 +314,6 @@ void setAlarm() {
         alarms[alarmCount].minute);
     alarmCount++;
     declareAlarms();
-
 }
 
 int main(int argc, char **argv){
