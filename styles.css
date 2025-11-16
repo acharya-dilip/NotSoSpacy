@@ -27,8 +27,15 @@ window{
     font-size: 40px;
 }
 .buttonDeleteAlarm{
-
+    all: unset;
 }
 .boxAlarm{
+    background-image: url("src/alarms.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
 
 }

@@ -44,7 +44,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);
-    //gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
+    gtk_window_set_default_size(GTK_WINDOW(windowMain),300,300);
     gtk_window_set_title(GTK_WINDOW(windowMain),"NotSoSpacy");
     gtk_window_present(GTK_WINDOW(windowMain));
 
@@ -102,16 +102,19 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
 
 void declareAlarms() {
+    //Removes the old widgets
     GtkWidget *child;
     while ((child = gtk_widget_get_first_child(GTK_WIDGET(gridParentAlarms))) != NULL) {
         gtk_grid_remove(GTK_GRID(gridParentAlarms), child);
     }
+    //Declares the new widgets
     for (int i=0;i<alarmCount;i++) {
         //Init of boxAlarm
         alarms[i].boxAlarm = gtk_center_box_new();
         gtk_orientable_set_orientation(GTK_ORIENTABLE(alarms[i].boxAlarm),GTK_ORIENTATION_HORIZONTAL);
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].boxAlarm,0,i+2,1,1);
         gtk_widget_add_css_class(alarms[i].boxAlarm,"boxAlarm");
+        gtk_widget_set_size_request(alarms[i].boxAlarm,280,-1);
         gtk_widget_set_margin_top(alarms[i].boxAlarm,10);
 
         //Init of labelAlarm
