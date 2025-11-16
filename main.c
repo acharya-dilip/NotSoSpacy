@@ -117,7 +117,7 @@ void declareAlarms() {
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].labelAlarmTime,0,i,8,1);
 
         //Init of buttonDeleteAlarm
-        alarms[i].buttonDeleteAlarm = gtk_button_new();
+        alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
         gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].buttonDeleteAlarm,7,i,2,1);
 
 
@@ -128,7 +128,6 @@ void deleteAlarm(int i) {
     for (int j = i; j!=alarmCount;j++) {
         alarms[i].hour = alarms[i+1].hour;
         alarms[i].minute = alarms[i+1].minute ;
-        alarms[i].gridAlarm = alarms[i+1].gridAlarm;
         alarms[i].labelAlarmTime = alarms[i+1].labelAlarmTime;
         alarms[i].buttonDeleteAlarm = alarms[i+1].buttonDeleteAlarm;
     }
