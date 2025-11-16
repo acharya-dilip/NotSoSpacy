@@ -108,7 +108,6 @@ void screenAlarms() {
     //Declare the alarm subgrids
     declareAlarms();
 
-
 }
 
 void declareAlarms() {
