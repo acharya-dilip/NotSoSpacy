@@ -80,9 +80,13 @@ void screenAlarms() {
 
     //Init of windowAlarms
     GtkWidget *windowAlarms = gtk_window_new();
-    gtk_window_set_default_size(GTK_WINDOW(windowAlarms),300,600);
+    gtk_window_set_default_size(GTK_WINDOW(windowAlarms),400,500);
     gtk_window_set_title(GTK_WINDOW(windowAlarms),"Alarms");
     gtk_window_present(GTK_WINDOW(windowAlarms));
+
+    //Init of headerAlarms
+    GtkWidget *headerAlarms = gtk_header_bar_new();
+    gtk_window_set_titlebar(GTK_WINDOW(windowAlarms),headerAlarms);
 
 
 }
