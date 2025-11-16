@@ -5,7 +5,10 @@ window{
     background-repeat: no-repeat;
 }
 .entryTime{
-
+    background-image: url("src/entryTime.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: gray;
     font-size: 71px;
 
