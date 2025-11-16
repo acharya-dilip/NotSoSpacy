@@ -374,6 +374,12 @@ gboolean checkAlarm() {
     }
     return G_SOURCE_CONTINUE;
 }
+void closeAlarm() {
+    //Init of windowClose
+    GtkWidget *windowClose = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowClose),"Alarm Ringing");
+    gtk_window_present(GTK_WINDOW(windowClose));
+}
 
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
