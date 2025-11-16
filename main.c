@@ -128,7 +128,7 @@ void declareAlarms() {
 
         //Init of buttonDeleteAlarm
         alarms[i].buttonDeleteAlarm = gtk_button_new_with_label("❌");
-        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[i].buttonDeleteAlarm,7,i,2,1);
+        gtk_center_box_set_end_widget(GTK_CENTER_BOX(alarms[i].boxAlarm),alarms[i].buttonDeleteAlarm);
         gtk_widget_add_css_class(alarms[i].buttonDeleteAlarm,"buttonDeleteAlarm");
         gtk_widget_set_halign(alarms[i].buttonDeleteAlarm,GTK_ALIGN_END);
 
