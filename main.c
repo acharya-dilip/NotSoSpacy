@@ -49,7 +49,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
     //Init of buttonAlarm
     GtkWidget *buttonAlarm = gtk_button_new_with_label("⏰");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarMain),buttonAlarm);
-    g_signal_connect(buttonAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
+    g_signal_connect(buttonAlarm,"clicked",G_CALLBACK(screenAlarms),NULL);
 
     //Init of gridParent
     GtkWidget *gridParent = gtk_grid_new();
