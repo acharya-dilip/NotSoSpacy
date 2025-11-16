@@ -80,6 +80,10 @@ static void activate(GtkApplication *app,gpointer user_data) {
     g_timeout_add_seconds(1, updateTime, entryTime);
     updateTime(entryTime);
 
+    //Init of scrollAlarms
+    GtkWidget *scrollAlarms = gtk_scrolled_window_new();
+    gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,1,16,1);
+
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
     gtk_grid_attach(GTK_GRID(gridParent),gridParentAlarms,0,1,16,1);
@@ -132,6 +136,8 @@ void deleteAlarm(GtkButton *button, gpointer user_data) {
     declareAlarms();
 }
 
+
+
 gboolean updateTime(gpointer user_data) {
     GtkEntry *entryTime = GTK_ENTRY(user_data);
     GDateTime *timeCurrent = g_date_time_new_now_local();
@@ -139,6 +145,8 @@ gboolean updateTime(gpointer user_data) {
     gtk_editable_set_text(GTK_EDITABLE(entryTime), time);
     return G_SOURCE_CONTINUE;
 }
+
+
 //GLoblised Variables
 GtkWidget *windowAddAlarm;
 GtkWidget *entryHour;
