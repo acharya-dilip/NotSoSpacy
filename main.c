@@ -40,8 +40,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
         gdk_display_get_default(),
         GTK_STYLE_PROVIDER(provider),
         GTK_STYLE_PROVIDER_PRIORITY_USER
-    );;
-
+    );
 
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 4.0)
 project(NotSoSpacy C)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRD ON)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Find GTK4 with pkg-config
 find_package(PkgConfig REQUIRED)

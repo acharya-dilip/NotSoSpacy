@@ -1,3 +1,9 @@
+window{
+    background-image: url("src/space.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .entryTime{
     color: black;
     font-size: 71px;
