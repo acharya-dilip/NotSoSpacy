@@ -146,11 +146,11 @@ int musicState;
 void bgMusic(GtkButton *button, gpointer user_data) {
     if (musicState==0) {
         musicState=1;
-        gtk_label_set_text(GTK_LABEL(button),"🔈️");
+        gtk_button_set_label(GTK_BUTTON(button),"🎧️");
         system("gst-play-1.0 ./src/sounds/bgmusic.mp3 >/dev/null 2>&1 &");
     }else {
         musicState=0;
-        gtk_label_set_text(GTK_LABEL(button),"🔇️");
+        gtk_button_set_label(GTK_BUTTON(button),"🔇");
         system(" pkill gst-play-1.0");
     }
 
