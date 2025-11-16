@@ -26,6 +26,7 @@ struct alarms {
     GtkWidget *buttonDeleteAlarm;
     GtkWidget *boxAlarm;
 }alarms[10];
+void checkAlarm();
 
 //Globalised Variables
 GtkWidget *gridParentAlarms;
@@ -124,6 +125,9 @@ void declareAlarms() {
                     alarms[i].hour,
                     alarms[i].minute);
             }
+            snprintf(alarmTime,sizeof(alarmTime),"%d:%d",
+                    alarms[i].hour,
+                    alarms[i].minute);
         }
 
         alarms[i].labelAlarmTime = gtk_label_new(alarmTime);
@@ -346,6 +350,17 @@ void setAlarm() {
     declareAlarms();
 }
 
+void checkAlarm() {
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    int hour = t->tm_hour;
+    int minute = t->tm_min;
+    for (int i=0;i<alarmCount;i++) {
+        if (alarms[i].hour==hour && alarms[i].minute==minute) {
+            //place what to do
+        }
+    }
+}
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
