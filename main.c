@@ -6,6 +6,7 @@
 
 gboolean updateTime(gpointer user_data);
 void fetchData(); //Responsible for fetching previously stored data in .txt files
+void storeData(); //Responsible for storing data for future use
 void declareAlarms(); //Declares the Alarm Blocks for the main window
 void deleteAlarm(GtkButton *button,gpointer user_data); //Responsible for handling the alarm deletion logic
 void screenAddAlarm(); //Window for adding additional Alarms
@@ -34,20 +35,26 @@ void stopSound(); //Responsible for stopping the looping sound
 void fetchData() {
     FILE *f = fopen("alarms.txt","a");
     fclose(f);
-
     FILE *file = fopen("alarms.txt","rb");
     fread(&alarmCount, sizeof(int), 1, file);
-
     for (int i = 0; i < alarmCount; i++) {
         fread(&alarms[i], sizeof(int) * 2, 1, file);
         alarms[i].labelAlarmTime = NULL;
         alarms[i].buttonDeleteAlarm = NULL;
         alarms[i].boxAlarm = NULL;
     }
-
     fclose(file);
 }
 
+
+void storeData() {
+    FILE *file=fopen("alarms.txt", "wb");
+    fwrite(&alarmCount, sizeof(int), 1, file);
+    for (int i = 0; i < alarmCount; i++) {
+        fwrite(&alarms[i], sizeof(int) * 2, 1, file);
+    }
+    fclose(file);
+}
 
 //Globalised Variables
 GtkWidget *gridParentAlarms;
@@ -64,6 +71,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
         GTK_STYLE_PROVIDER(provider),
         GTK_STYLE_PROVIDER_PRIORITY_USER
     );
+
 
     //Init of windowMain
     GtkWidget *windowMain = gtk_application_window_new(app);
