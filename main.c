@@ -88,6 +88,10 @@ void screenAlarms() {
     GtkWidget *headerAlarms = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowAlarms),headerAlarms);
 
+    //Init of buttonAddAlarm
+    GtkWidget *buttonAddAlarm = gtk_button_new_with_label("➕");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerAlarms),buttonAddAlarm);
+
 
 }
 
