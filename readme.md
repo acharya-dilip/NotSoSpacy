@@ -47,6 +47,6 @@ besides that Alarm to remove it
 |cmake --build .| Executes the build           |
 
 # Credit Goes To
-- @HolyBasil
+- @HolyBasil => This Guy Spent like 7 and a half hours on a single day cuz he spent the rest of the week procasitnating and now he's doomed cause he hasn't gotten enough sleep and his schools starts in 2 hours
 - contactme: acharyamission6@gmail.com
 - I had fun building this but was dissapointed to see how it turned out alot sloppier than I thought
