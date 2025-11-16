@@ -86,7 +86,7 @@ static void activate(GtkApplication *app,gpointer user_data) {
 
     //init of gridParentAlarms
     gridParentAlarms = gtk_grid_new();
-    gtk_grid_attach(GTK_GRID(gridParent),gridParentAlarms,0,1,16,1);
+    gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrollAlarms),gridParentAlarms);
     gtk_grid_set_column_spacing(GTK_GRID(gridParentAlarms),50);
     gtk_widget_set_halign(gridParentAlarms,GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParentAlarms,GTK_ALIGN_CENTER);
