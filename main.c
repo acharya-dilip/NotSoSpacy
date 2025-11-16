@@ -394,7 +394,8 @@ void closeAlarm() {
 }
 
 void stopSound() {
-
+    system("pkill -f 'while true; do gst-play-1.0 ./src/sounds/bells.mp3'");
+    system(" pkill gst-play-1.0");
 }
 int main(int argc, char **argv){
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
