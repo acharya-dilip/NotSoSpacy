@@ -25,14 +25,28 @@ struct alarms { //struct used to store all the alarms created
     GtkWidget *labelAlarmTime;
     GtkWidget *buttonDeleteAlarm;
     GtkWidget *boxAlarm;
-}alarms[30];
+}alarms[100];
 gboolean checkAlarm(); //Checks if the current time is the time for any of the alarm triggering
 void closeAlarm(); //The closeAlarmWindow
 void stopSound(); //Responsible for stopping the looping sound
 
 
 void fetchData() {
-    FILE *file = fopen("alarms.txt","a");
+    FILE *f = fopen("alarms.txt","a");
+    fclose(f);
+
+    FILE *file = fopen("alarms.txt","rb");
+    fread(&alarmCount, sizeof(int), 1, file);
+
+    for (int i = 0; i < alarmCount; i++) {
+        // Read only the first 2 ints
+        fread(&alarms[i], sizeof(int) * 2, 1, file);
+        // Pointers remain uninitialized, set them to NULL
+        alarms[i].labelAlarmTime = NULL;
+        alarms[i].buttonDeleteAlarm = NULL;
+        alarms[i].boxAlarm = NULL;
+    }
+
     fclose(file);
 }
 
@@ -41,7 +55,7 @@ void fetchData() {
 GtkWidget *gridParentAlarms;
 GtkWidget *entryTime;
 static void activate(GtkApplication *app,gpointer user_data) {
-
+    fetchData();
     //Connecting the stylesheet
     GtkCssProvider *provider = gtk_css_provider_new();
     gtk_css_provider_load_from_path(provider, "styles.css");
