@@ -199,7 +199,34 @@ void alarmHourButton(GtkButton *button, gpointer user_data) {
     }
 }
 void alarmMinButton(GtkButton *button,gpointer user_data) {
+    int a = GPOINTER_TO_INT(user_data);
+    char tempk[5];
+    char tempj[5];
+    printf("\nalarmMinuteButton is executed");
+    printf("\na=%d",a);
+    switch (a) {
+        case 0:
+            if (curTime.minute==0) {
+                curTime.minute = 59;
+            }
+            curTime.minute--;
+            printf("\nChanged Minute=%d Minute is decreased\n",curTime.minute);
+            snprintf(tempk,sizeof(tempk),"%d",curTime.minute);
+            gtk_editable_set_text(GTK_EDITABLE(entryMinute),tempk);
+            break;
 
+        case 1:
+            if (curTime.minute==59) {
+                curTime.minute = -1;
+            }
+            curTime.minute++;
+            printf("\nChanged Minute=%d Minute is increased\n",curTime.minute);
+            snprintf(tempj,sizeof(tempj),"%d",curTime.minute);
+            gtk_editable_set_text(GTK_EDITABLE(entryMinute),tempj);
+            break;
+        default:
+            printf("switch gets nuttin");
+    }
 }
 
 int main(int argc, char **argv){
