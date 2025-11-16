@@ -76,7 +76,8 @@ static void activate(GtkApplication *app,gpointer user_data) {
     updateTime(entryTime);
 
 }
-
+//Globalised variables
+GtkWidget *gridParentAlarms;
 void screenAlarms() {
 
     //Init of windowAlarms
@@ -95,7 +96,7 @@ void screenAlarms() {
     g_signal_connect(buttonAddAlarm,"clicked",G_CALLBACK(screenAddAlarm),NULL);
 
     //init of gridParentAlarms
-    GtkWidget *gridParentAlarms = gtk_grid_new();
+    gridParentAlarms = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowAlarms),gridParentAlarms);
 
 
