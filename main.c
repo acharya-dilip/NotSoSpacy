@@ -84,10 +84,14 @@ static void activate(GtkApplication *app,gpointer user_data) {
     g_timeout_add_seconds(30,checkAlarm,NULL);
     checkAlarm();
 
+    //Init of labelAlarms
+    GtkWidget *labelAlarms = gtk_label_new("Alarms");
+    gtk_grid_attach(GTK_GRID(gridParent),labelAlarms,0,1,16,1);
+    gtk_widget_add_css_class(labelAlarms,"labelAlarms");
 
     //Init of scrollAlarms
     GtkWidget *scrollAlarms = gtk_scrolled_window_new();
-    gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,1,16,1);
+    gtk_grid_attach(GTK_GRID(gridParent),scrollAlarms,0,2,16,1);
     gtk_widget_set_size_request(scrollAlarms,300,300);
 
     //init of gridParentAlarms
