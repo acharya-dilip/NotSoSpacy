@@ -104,7 +104,9 @@ void screenAlarms() {
 
 void declareAlarms() {
     for (int i=0;i<alarmCount;i++) {
-        alarms[alarmCount].gridAlarm
+        //Init of the grid that'll hold the alarm time and the remove alarm button
+        alarms[alarmCount].gridAlarm = gtk_grid_new();
+        gtk_grid_attach(GTK_GRID(gridParentAlarms),alarms[alarmCount].gridAlarm,0,1,10,1);
     }
 }
 
