@@ -24,7 +24,7 @@ besides that Alarm to remove it
 ## Happy Clockin Sloppy Toppin
 
 # Demo Video
--
+- https://hc-cdn.hel1.your-objectstorage.com/s/v3/e23a95e461104701d418b80097a19b0dd369e73f_2025-11-17_20-08-27.mp4
 
 # Arch Linux Build Instructions
 | Commands                                            | What They Do?                     |
